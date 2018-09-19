@@ -22,7 +22,7 @@ public class Projecto_AMS extends Application {
     @Override
     public void start(Stage primaryStage) {
         Button btn = new Button();
-        btn.setText("Say 'Hello World'");
+        btn.setText("Hola");
         btn.setOnAction( e-> primaryStage.close());
         
         StackPane root = new StackPane();
