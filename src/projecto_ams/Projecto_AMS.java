@@ -6,12 +6,22 @@
 package projecto_ams;
 
 import javafx.application.Application;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
+import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
+import javafx.scene.layout.Region;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
@@ -28,46 +38,109 @@ public class Projecto_AMS extends Application {
     
     @Override
     public void start(Stage primaryStage){
-        //Initializing the buttons
-        Button btn1 = new Button();
-        Button btn2=new Button();
-        Button btn3=new Button();
+        ObservableList<String> options = 
+        FXCollections.observableArrayList(
+            "Option 1",
+            "Option 2",
+            "Option 3"
+        );
+        ComboBox comboBox = new ComboBox(options);
+        ComboBox comboBox2 = new ComboBox(options);
+        comboBox.setPrefSize(150, 30);
+        comboBox2.setPrefSize(150, 30);
+        
+        
+        Button addMateria=new Button("Agregar Materia");
+        Button addTema=new Button("Agregar Tema");
+        Button deletMateria=new Button("Borrar Materia");
+        Button deletTema=new Button("Borrar tema");
+        Button addPregunta=new Button("Agregar Pregunta");
+        Button crearExamen=new Button();
+        crearExamen.setText("Crear Examen");
+        addMateria.setStyle(Style.Lion);
+        addTema.setStyle(Style.Lion);
+        addPregunta.setStyle(Style.Lion);
+        deletMateria.setStyle(Style.Lion);
+        deletTema.setStyle(Style.Lion);
+        crearExamen.setStyle(Style.Rich_Blue);
+        
+       
+        
+        addMateria.setOnMouseEntered(e->addMateria.setStyle(Style.Lion_default));
+        addMateria.setOnMouseExited(e->addMateria.setStyle(Style.Lion));
+        addTema.setOnMouseEntered(e->addTema.setStyle(Style.Lion_default));
+        addTema.setOnMouseExited(e->addTema.setStyle(Style.Lion));
+        addPregunta.setOnMouseEntered(e->addPregunta.setStyle(Style.Lion_default));
+        addPregunta.setOnMouseExited(e->addPregunta.setStyle(Style.Lion));
+        deletMateria.setOnMouseEntered(e->deletMateria.setStyle(Style.Lion_default));
+        deletMateria.setOnMouseExited(e->deletMateria.setStyle(Style.Lion));
+        deletTema.setOnMouseEntered(e->deletTema.setStyle(Style.Lion_default));
+        deletTema.setOnMouseExited(e->deletTema.setStyle(Style.Lion));
         //Initilizing the title
-        Label text=new Label("Examen Generator");
+        Label text1=new Label("Materia:");
+        Label text2=new Label("Tema:");
         //Styling the main title
-        text.setTextFill(Color.web("#FFFFFF"));
-        text.setFont(new Font("Arial", 35));
-        //Setting the buttons sizes
-        btn1.setMinSize(50, 50);
-        btn2.setMinSize(50, 50);
-        btn3.setMinSize(50, 50);
-        //Setting the text inside the buttons
-        btn1.setText("Administrar Peguntas");
-        btn2.setText("Crear Examen");
-        btn3.setText("Consultar Examenes Pasados");
-        //Setting the syle in the buttons
-        btn1.setStyle(Style.Windows7);
-        btn2.setStyle(Style.Windows7);
-        btn3.setStyle(Style.Windows7);
-        //Setting actions when the button is clicked
-        btn1.setOnAction( e-> AlertBox.display("En construcion","Upps... esto todavia no esta acabado :(")); //Cambiar cuando nueva ventana este terminada
-        btn2.setOnAction( e-> AlertBox.display("En construcion","Upps... esto todavia no esta acabado :(")); //Cambiar cuando nueva ventana este terminada
-        btn3.setOnAction( e-> AlertBox.display("En construcion","Upps... esto todavia no esta acabado :(")); //Cambiar cuando nueva ventana este terminada
-        //Setting the change of the button when the mouse is hovered over them
-        btn1.setOnMouseEntered(e->btn1.setStyle(Style.Windows7_default));
-        btn1.setOnMouseExited(e -> btn1.setStyle(Style.Windows7));
-        btn2.setOnMouseEntered(e->btn2.setStyle(Style.Windows7_default));
-        btn2.setOnMouseExited(e -> btn2.setStyle(Style.Windows7));
-        btn3.setOnMouseEntered(e->btn3.setStyle(Style.Windows7_default));
-        btn3.setOnMouseExited(e -> btn3.setStyle(Style.Windows7));
+        Font.loadFont(Projecto_AMS.class.getResource("Montserrat-Light.ttf").toExternalForm(), 20);
+        text1.setTextFill(Color.web("#000000"));
+        text1.setStyle(Style.Montserrat_Light);
+        text2.setTextFill(Color.web("#000000"));
+        text2.setStyle(Style.Montserrat_Light);
+        
+        //Table inftomation
+        TableView table=new TableView();
+        
+        TableColumn MateriaCol = new TableColumn("Materia");
+        TableColumn TemaCol = new TableColumn("Tema");
+        TableColumn PreguntaCol = new TableColumn("Pregunta");
+        TableColumn IncisosCol=new TableColumn("No.Incisos"); 
+        TableColumn ModCol=new TableColumn("Modificar");
+        MateriaCol.setPrefWidth(175);
+        TemaCol.setPrefWidth(175);
+        PreguntaCol.setPrefWidth(450);
+        IncisosCol.setPrefWidth(175);
+        ModCol.setPrefWidth(175);
+        table.getColumns().addAll(MateriaCol, TemaCol, PreguntaCol,IncisosCol,ModCol);
+        table.prefHeight(350);
+        table.prefWidth(500);
         //Setting the layout of the MAIN screen
-        VBox root = new VBox(20);
-        root.setAlignment(Pos.TOP_CENTER);
+        HBox root = new HBox();
+        VBox bottom=new VBox();
+        root.setPadding(new Insets(10));
+        root.setSpacing(10);
+        bottom.setPadding(new Insets(10));
+        bottom.setSpacing(90);
+        bottom.setAlignment(Pos.TOP_RIGHT);
+        bottom.setPrefSize(1150,200);
         root.setStyle("-fx-background-color: #73A86F");
+        bottom.setStyle("-fx-background-color: #73A86F");
+        Region r = new Region();
+        VBox.setVgrow(r, Priority.ALWAYS);
+        VBox vbox=new VBox(20);
+        vbox.getChildren().add(table);
+        
+        
+        
+        BorderPane borderPane=new BorderPane();
+        
+        borderPane.setTop(root);
+        //borderPane.setLeft(vbox);
+        borderPane.setCenter(vbox);
+        borderPane.setBottom(bottom);
+        borderPane.setStyle("-fx-background-color: #73A86F");
         //Adding the Title and the buttons to the layout
-        root.getChildren().addAll(text,btn1,btn2,btn3);
+        root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+        bottom.getChildren().addAll(addPregunta,crearExamen);
+        
+        //Actions of buttons
+        addPregunta.setOnAction(e -> {
+            AgregarPregunta.display(comboBox,comboBox2);
+            root.getChildren().clear();
+            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+        });
+        
+        
         //Adding the layout to the scene
-        Scene scene = new Scene(root,400, 300);
+        Scene scene = new Scene(borderPane,1150,614);
         //Displaying the window
         primaryStage.setTitle("Exam Generator");
         primaryStage.setScene(scene);
