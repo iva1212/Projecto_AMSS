@@ -5,6 +5,10 @@
  */
 package projecto_ams;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -14,6 +18,8 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
+import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
@@ -29,14 +35,29 @@ import javafx.stage.Stage;
  */
 public class AgregarPregunta {
     public static void display(ComboBox comboBox,ComboBox comboBox2){
-        Inciso[] I;
-        I = new Inciso[4];
-        char c='a';
-        for(int i=0;i<4;++i){
-            I[i]=new Inciso(c);
-            c++;
+        
+        int numIncisos=4;
+        List<Inciso> I= new ArrayList<>();
+        for(int i=0;i<numIncisos;++i){
+            Inciso in=new Inciso((char) (I.size()+'a'));
+            I.add(in);
         }
+        Inciso abierta=new Inciso("Respuesta","Respuesta abierta",true);
+        Inciso verdad=new Inciso("a","Verdadero",false);
+        Inciso falso=new Inciso("b","Falso",false);
         Stage window= new Stage();
+        
+        TableView table=new TableView();
+        TableColumn VariableCol = new TableColumn("Variable");
+        TableColumn MinCol = new TableColumn("Rango Min");
+        TableColumn MaxCol = new TableColumn("Rango Max");
+        VariableCol.setPrefWidth(75);
+        MinCol.setPrefWidth(75);
+        MaxCol.setPrefWidth(75);
+        table.getColumns().addAll(VariableCol,MinCol,MaxCol);
+        table.maxHeight(100);
+        table.prefWidth(135);
+     
         
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Agregar Pregunta");
@@ -70,44 +91,99 @@ public class AgregarPregunta {
         text4.setStyle(Style.Montserrat_Light);
         text4.setTextFill(Color.web("#000000"));
         
-        Button closeButton=new Button("Cerrar");
-        closeButton.setOnAction(e -> {
-            window.close();});
-        closeButton.setPrefSize(100, 30);
+        Button btnAgregar=new Button("Agregar");
+        Button mas=new Button("+");
+        Button menos=new Button("-");
+        Button agrVariable=new Button("Agregar Variable");
+        
+        btnAgregar.setStyle(Style.Lion);
+        mas.setStyle(Style.Lion);
+        menos.setStyle(Style.Lion);
+        agrVariable.setStyle(Style.Lion);
+        
+        
+        btnAgregar.setOnMouseEntered(e->btnAgregar.setStyle(Style.Lion_default));
+        btnAgregar.setOnMouseExited(e->btnAgregar.setStyle(Style.Lion));
+        mas.setOnMouseEntered(e->mas.setStyle(Style.Lion_default));
+        mas.setOnMouseExited(e->mas.setStyle(Style.Lion));
+        menos.setOnMouseEntered(e->menos.setStyle(Style.Lion_default));
+        menos.setOnMouseExited(e->menos.setStyle(Style.Lion));
+        agrVariable.setOnMouseEntered(e->agrVariable.setStyle(Style.Lion_default));
+        agrVariable.setOnMouseExited(e->agrVariable.setStyle(Style.Lion));
+        
+        btnAgregar.setPrefSize(150, 30);
+        mas.setPrefSize(25, 25);
+        menos.setPrefSize(25, 25);
+        
         HBox top=new HBox(10);
         HBox bottom=new HBox(10);
         VBox middle=new VBox(10);
+        VBox tabla=new VBox(10);
         HBox secPregunta=new HBox(10);
+        HBox masMenos=new HBox(10);
         secPregunta.getChildren().addAll(text4,preg);
         top.setStyle("-fx-background-color: #73A86F");
         top.getChildren().addAll(text1,comboBox,text2,comboBox2,text3,combo3);
         top.setAlignment(Pos.TOP_LEFT);
         top.setPrefSize(800, 100);
-        bottom.setAlignment(Pos.TOP_LEFT);
+        bottom.setAlignment(Pos.TOP_RIGHT);
+        tabla.setAlignment(Pos.CENTER_RIGHT);
         bottom.setPrefSize(800, 50);
-        bottom.getChildren().addAll(closeButton);
+        bottom.getChildren().addAll(btnAgregar);
         middle.getChildren().addAll(secPregunta);
+        masMenos.getChildren().addAll(mas,menos);
+        tabla.getChildren().addAll(table,agrVariable);
         combo3.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
                 if(combo3.getValue()=="Opcion Multiple"){
                     middle.getChildren().clear();
-                    middle.getChildren().addAll(secPregunta,I[0].display(),I[1].display(),I[2].display(),I[3].display());
+                    middle.getChildren().add(secPregunta);
+                    for(int i=0;i<numIncisos;i++){
+                        middle.getChildren().add(I.get(i).display());
+                    }
+                    middle.getChildren().add(masMenos);
                 }
-                else{
+                else if(combo3.getValue()=="Abierta"){
                     middle.getChildren().clear();
-                    middle.getChildren().addAll(secPregunta);
+                    middle.getChildren().addAll(secPregunta,abierta.display());
+                }
+                else if(combo3.getValue()=="V o F"){
+                    middle.getChildren().clear();
+                    middle.getChildren().addAll(secPregunta,verdad.display(),falso.display());
                 }
             }
                     
                     });
-                
+        btnAgregar.setOnAction(e -> {
+            window.close();});
+        mas.setOnAction(e->{
+            Inciso in=new Inciso((char) (I.size()+'a'));
+            I.add(in);
+            middle.getChildren().clear();
+            middle.getChildren().add(secPregunta);
+            for(int i=0;i<I.size();i++){
+                middle.getChildren().add(I.get(i).display());
+            }
+            middle.getChildren().add(masMenos);
+        });   
+        menos.setOnAction(e ->{
+            I.remove(I.size()-1);
+            middle.getChildren().clear();
+            middle.getChildren().add(secPregunta);
+            for(int i=0;i<I.size();i++){
+                middle.getChildren().add(I.get(i).display());
+            }
+            middle.getChildren().add(masMenos);
+        });
         
+                
         BorderPane borderPane=new BorderPane();
         borderPane.setStyle("-fx-background-color: #73A86F");
         borderPane.setTop(top);
         borderPane.setBottom(bottom);
         borderPane.setLeft(middle);
+        borderPane.setRight(tabla);
         Scene scene=new Scene(borderPane);
         window.setScene(scene);
         window.showAndWait();

@@ -5,6 +5,10 @@
  */
 package projecto_ams;
 
+import java.util.ArrayList;
+import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javafx.application.Application;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -38,14 +42,15 @@ public class Projecto_AMS extends Application {
     
     @Override
     public void start(Stage primaryStage){
-        ObservableList<String> options = 
-        FXCollections.observableArrayList(
-            "Option 1",
-            "Option 2",
-            "Option 3"
-        );
-        ComboBox comboBox = new ComboBox(options);
-        ComboBox comboBox2 = new ComboBox(options);
+        ControladorBD.crearBase();
+        List<String> options =new ArrayList<>();
+        options=ControladorBD.leerMaterias();
+        
+        ComboBox comboBox = new ComboBox();
+        for(int i=0;i<options.size();i++){
+            comboBox.getItems().add(options.get(i));
+        }
+        ComboBox comboBox2 = new ComboBox();
         comboBox.setPrefSize(150, 30);
         comboBox2.setPrefSize(150, 30);
         
@@ -68,8 +73,11 @@ public class Projecto_AMS extends Application {
         
         addMateria.setOnMouseEntered(e->addMateria.setStyle(Style.Lion_default));
         addMateria.setOnMouseExited(e->addMateria.setStyle(Style.Lion));
+        
+        
         addTema.setOnMouseEntered(e->addTema.setStyle(Style.Lion_default));
         addTema.setOnMouseExited(e->addTema.setStyle(Style.Lion));
+        
         addPregunta.setOnMouseEntered(e->addPregunta.setStyle(Style.Lion_default));
         addPregunta.setOnMouseExited(e->addPregunta.setStyle(Style.Lion));
         deletMateria.setOnMouseEntered(e->deletMateria.setStyle(Style.Lion_default));
@@ -92,14 +100,14 @@ public class Projecto_AMS extends Application {
         TableColumn MateriaCol = new TableColumn("Materia");
         TableColumn TemaCol = new TableColumn("Tema");
         TableColumn PreguntaCol = new TableColumn("Pregunta");
-        TableColumn IncisosCol=new TableColumn("No.Incisos"); 
+        TableColumn TipoCol=new TableColumn("Tipo"); 
         TableColumn ModCol=new TableColumn("Modificar");
         MateriaCol.setPrefWidth(175);
         TemaCol.setPrefWidth(175);
         PreguntaCol.setPrefWidth(450);
-        IncisosCol.setPrefWidth(175);
+        TipoCol.setPrefWidth(175);
         ModCol.setPrefWidth(175);
-        table.getColumns().addAll(MateriaCol, TemaCol, PreguntaCol,IncisosCol,ModCol);
+        table.getColumns().addAll(MateriaCol, TemaCol, PreguntaCol,TipoCol,ModCol);
         table.prefHeight(350);
         table.prefWidth(500);
         //Setting the layout of the MAIN screen
@@ -137,8 +145,40 @@ public class Projecto_AMS extends Application {
             root.getChildren().clear();
             root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
         });
-        
-        
+        addMateria.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                AgregarMateria.display();
+                List<String> op =new ArrayList<>();
+                op=ControladorBD.leerMaterias();
+                comboBox.getItems().clear();
+                for(int i=0;i<op.size();i++){
+                    comboBox.getItems().add(op.get(i));
+                 } 
+            }
+        });
+        addTema.setOnAction(e ->{
+            AgregarTema.display(comboBox);
+            
+            root.getChildren().clear();
+            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+        });
+        deletMateria.setOnAction(e ->{
+            BorrarMateria.display(comboBox);
+            List<String> op =new ArrayList<>();
+                op=ControladorBD.leerMaterias();
+                comboBox.getItems().clear();
+                for(int i=0;i<op.size();i++){
+                    comboBox.getItems().add(op.get(i));
+                 } 
+            root.getChildren().clear();
+            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+        });
+        deletTema.setOnAction(e->{
+            BorrarTema.display(comboBox, comboBox2);
+            root.getChildren().clear();
+            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+        });
         //Adding the layout to the scene
         Scene scene = new Scene(borderPane,1150,614);
         //Displaying the window
@@ -152,6 +192,7 @@ public class Projecto_AMS extends Application {
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+       
         launch(args);
     }
     

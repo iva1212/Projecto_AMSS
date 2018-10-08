@@ -59,7 +59,9 @@ public class Inciso {
         return inciso;
     }
 
-    public  void setLetra(String letra) {
+    public void setLetra(String letra) {
         this.letra = letra;
     }
+
+    
 }

@@ -27,6 +27,7 @@ public class AlertBox {
         window.setTitle(title);
         window.setMinWidth(250);
         
+        
         Label label=new Label();
         label.setText(message);
         Button closeButton=new Button();
