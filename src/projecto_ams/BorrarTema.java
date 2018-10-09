@@ -41,7 +41,7 @@ public class BorrarTema {
         
         Button btnAceptar=new Button("Borrar");
         btnAceptar.setPrefSize(150, 30);
-        btnAceptar.setOnAction(e-> window.close());//cambiar cuando se implemente la base de datos
+        
         btnAceptar.setStyle(Style.Lion);
         btnAceptar.setOnMouseEntered(e->btnAceptar.setStyle(Style.Lion_default));
         btnAceptar.setOnMouseExited(e->btnAceptar.setStyle(Style.Lion));
@@ -65,6 +65,10 @@ public class BorrarTema {
         VBox vbox=new VBox(40);
         vbox.getChildren().addAll(r,hbox,middle,bottom);
         vbox.setStyle("-fx-background-color: #73A86F");
+        btnAceptar.setOnAction(e-> {
+            ControladorBD.deletTema(combo.getValue().toString(),combo2.getValue().toString());
+            window.close();
+        });//cambiar cuando se implemente la base de datos
         Scene scene=new Scene(vbox);
         window.setResizable(false);
         window.setScene(scene);

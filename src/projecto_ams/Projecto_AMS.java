@@ -51,6 +51,7 @@ public class Projecto_AMS extends Application {
             comboBox.getItems().add(options.get(i));
         }
         ComboBox comboBox2 = new ComboBox();
+        
         comboBox.setPrefSize(150, 30);
         comboBox2.setPrefSize(150, 30);
         
@@ -139,6 +140,17 @@ public class Projecto_AMS extends Application {
         root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
         bottom.getChildren().addAll(addPregunta,crearExamen);
         
+        
+        //Action of comboBoxes
+        comboBox.setOnAction(e->{
+            List<String> op =new ArrayList<>();
+            op=ControladorBD.leerTemas(comboBox.getValue().toString());
+            comboBox2.getItems().clear();
+            for(int i=0;i<op.size();i++){
+                comboBox2.getItems().add(op.get(i));
+            }
+            
+        });
         //Actions of buttons
         addPregunta.setOnAction(e -> {
             AgregarPregunta.display(comboBox,comboBox2);
@@ -157,11 +169,23 @@ public class Projecto_AMS extends Application {
                  } 
             }
         });
-        addTema.setOnAction(e ->{
-            AgregarTema.display(comboBox);
-            
-            root.getChildren().clear();
-            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+        addTema.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                System.out.println("Si entro aqui");
+                AgregarTema.display(comboBox);
+                List<String> op =new ArrayList<>();
+                if(!comboBox.getSelectionModel().isEmpty()){
+                    op=ControladorBD.leerTemas(comboBox.getValue().toString());
+                    comboBox2.getItems().clear();
+
+                    for(int i=0;i<op.size();i++){
+                        comboBox2.getItems().add(op.get(i));
+                    }
+                }
+                root.getChildren().clear();
+                root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+            }
         });
         deletMateria.setOnAction(e ->{
             BorrarMateria.display(comboBox);
@@ -176,6 +200,14 @@ public class Projecto_AMS extends Application {
         });
         deletTema.setOnAction(e->{
             BorrarTema.display(comboBox, comboBox2);
+            List<String> op =new ArrayList<>();
+                if(!comboBox.getSelectionModel().isEmpty()){
+                    op=ControladorBD.leerTemas(comboBox.getValue().toString());
+                    comboBox2.getItems().clear();
+                    for(int i=0;i<op.size();i++){
+                        comboBox2.getItems().add(op.get(i));
+                    }
+                }
             root.getChildren().clear();
             root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
         });
