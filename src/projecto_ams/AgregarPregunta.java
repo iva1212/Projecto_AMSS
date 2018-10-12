@@ -34,17 +34,16 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class AgregarPregunta {
-    public static void display(ComboBox comboBox,ComboBox comboBox2){
+    public static void display(ComboBox comboBox,ComboBox comboBox2,Pregunta pregunta){
         
-        int numIncisos=4;
-        List<Inciso> I= new ArrayList<>();
-        for(int i=0;i<numIncisos;++i){
-            Inciso in=new Inciso((char) (I.size()+'a'));
-            I.add(in);
+        
+        if(pregunta.getMateria()!=""){
+            comboBox.setValue(pregunta.getMateria());
+            comboBox2.setValue(pregunta.getTema()); 
         }
-        Inciso abierta=new Inciso("Respuesta","Respuesta abierta",true);
-        Inciso verdad=new Inciso("a","Verdadero",false);
-        Inciso falso=new Inciso("b","Falso",false);
+        Inciso abierta=new Inciso("Respuesta","",true); //cambiar si es posible
+        Inciso verdad=new Inciso("a","Verdadero",false); //cambiar si es posible
+        Inciso falso=new Inciso("b","Falso",false); //cambiar si es posible
         Stage window= new Stage();
         
         TableView table=new TableView();
@@ -71,10 +70,15 @@ public class AgregarPregunta {
             "V o F"
         );
         ComboBox combo3=new ComboBox(options);
+        if(pregunta.getTipo()!=""){
+            combo3.setValue(pregunta.getTipo());
+        }
         combo3.setPrefSize(150, 30);
+        
         
         TextArea preg=new TextArea();
         preg.setPrefSize(350, 80);
+        preg.setText(pregunta.getPregunta());
         
         Label text1=new Label("Materia:");
         Label text2=new Label("Tema:");
@@ -132,6 +136,14 @@ public class AgregarPregunta {
         bottom.getChildren().addAll(btnAgregar);
         middle.getChildren().addAll(secPregunta);
         masMenos.getChildren().addAll(mas,menos);
+        if(pregunta.getTipo()!=""){
+            for(int i=0;i<pregunta.getI().size();i++){
+                        middle.getChildren().add(pregunta.getI().get(i).display());
+            }
+            if("Opcion Multiple".equals(pregunta.getTipo())){
+                middle.getChildren().add(masMenos);
+            }
+        }
         tabla.getChildren().addAll(table,agrVariable);
         combo3.setOnAction(new EventHandler<ActionEvent>(){
             @Override
@@ -139,44 +151,75 @@ public class AgregarPregunta {
                 if(combo3.getValue()=="Opcion Multiple"){
                     middle.getChildren().clear();
                     middle.getChildren().add(secPregunta);
-                    for(int i=0;i<numIncisos;i++){
-                        middle.getChildren().add(I.get(i).display());
+                    for(int i=0;i<pregunta.getI().size();i++){
+                        middle.getChildren().add(pregunta.getI().get(i).display());
                     }
                     middle.getChildren().add(masMenos);
                 }
-                else if(combo3.getValue()=="Abierta"){
+                else if(combo3.getValue().equals("Abierta")){
                     middle.getChildren().clear();
                     middle.getChildren().addAll(secPregunta,abierta.display());
                 }
-                else if(combo3.getValue()=="V o F"){
+                else if(combo3.getValue().equals("V o F")){
                     middle.getChildren().clear();
                     middle.getChildren().addAll(secPregunta,verdad.display(),falso.display());
                 }
             }
                     
-                    });
+         });
         btnAgregar.setOnAction(e -> {
-            window.close();});
+            if(pregunta.getPreguntaID()==-1){
+                if(combo3.getValue()=="Abierta"){
+                    pregunta.getI().clear();
+                    pregunta.getI().add(abierta);
+                }
+                else if(combo3.getValue()=="V o F"){
+                    pregunta.getI().clear();
+                    pregunta.getI().add(verdad);
+                    pregunta.getI().add(falso);
+                }
+            }
+            for(int i=0;i<pregunta.getI().size();i++){
+                pregunta.getI().get(i).save();
+            }
+            pregunta.setPregunta(preg.getText());
+            pregunta.setTipo(combo3.getValue().toString());
+            ControladorBD.deletPregunta(pregunta);
+            ControladorBD.agrPregunta(comboBox2.getValue().toString(), pregunta);
+            ControladorBD.agrInciso(pregunta.getI());
+            window.close();
+            });
         mas.setOnAction(e->{
-            Inciso in=new Inciso((char) (I.size()+'a'));
-            I.add(in);
+            for(int i=0;i<pregunta.getI().size();i++){
+                 pregunta.getI().get(i).save();
+             }
+             
+            Inciso in=new Inciso((char) (pregunta.getI().size()+'a'));
+            pregunta.getI().add(in);
+ 
             middle.getChildren().clear();
             middle.getChildren().add(secPregunta);
-            for(int i=0;i<I.size();i++){
-                middle.getChildren().add(I.get(i).display());
+            for(int i=0;i<pregunta.getI().size();i++){
+                middle.getChildren().add(pregunta.getI().get(i).display());
             }
             middle.getChildren().add(masMenos);
         });   
         menos.setOnAction(e ->{
-            I.remove(I.size()-1);
+            for(int i=0;i<pregunta.getI().size();i++){
+                 pregunta.getI().get(i).save();
+             }
+            pregunta.getI().remove(pregunta.getI().size()-1);
+            
             middle.getChildren().clear();
             middle.getChildren().add(secPregunta);
-            for(int i=0;i<I.size();i++){
-                middle.getChildren().add(I.get(i).display());
+            for(int i=0;i<pregunta.getI().size();i++){
+                middle.getChildren().add(pregunta.getI().get(i).display());
             }
             middle.getChildren().add(masMenos);
         });
-        
+        agrVariable.setOnAction(e ->{
+            AgregarVariable.display();
+        });
                 
         BorderPane borderPane=new BorderPane();
         borderPane.setStyle("-fx-background-color: #73A86F");

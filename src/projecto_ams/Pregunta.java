@@ -5,6 +5,8 @@
  */
 package projecto_ams;
 
+import java.util.ArrayList;
+import java.util.List;
 import javafx.scene.layout.HBox;
 
 /**
@@ -16,12 +18,22 @@ public class Pregunta {
     private String pregunta;
     private String materia;
     private String tema;
+    private int numeroIncisos;
     private int preguntaID;
+    private List<Inciso> I;
     public Pregunta(){
-        this.tipo="";
+        this.tipo="Opcion Multiple";
         this.pregunta="";
         this.materia="";
         this.tema="";
+        this.preguntaID=-1;
+        this.numeroIncisos=4;
+        this.I=new ArrayList<>();
+        
+        for(int i=0;i<this.numeroIncisos;++i){
+            Inciso in=new Inciso((char) (I.size()+'a'));
+            I.add(in);
+        }
     }
     public Pregunta(String materia,String tema,String pregunta,String tipo){
         this.tipo=tipo;
@@ -45,5 +57,46 @@ public class Pregunta {
     public String getTipo() {
         return tipo;
     }
+
+    public int getNumeroIncisos() {
+        return numeroIncisos;
+    }
+
+    public int getPreguntaID() {
+        return preguntaID;
+    }
+
+    public List<Inciso> getI() {
+        return I;
+    }
+
+    public void setI(List<Inciso> I) {
+        this.I = I;
+    }
+
+    public void setNumeroIncisos(int numeroIncisos) {
+        this.numeroIncisos = numeroIncisos;
+    }
+
+    public void setMateria(String materia) {
+        this.materia = materia;
+    }
+
+    public void setPregunta(String pregunta) {
+        this.pregunta = pregunta;
+    }
+
+    public void setTema(String tema) {
+        this.tema = tema;
+    }
+
+    public void setPreguntaID(int preguntaID) {
+        this.preguntaID = preguntaID;
+    }
+
+    public void setTipo(String tipo) {
+        this.tipo = tipo;
+    }
+    
     
 }

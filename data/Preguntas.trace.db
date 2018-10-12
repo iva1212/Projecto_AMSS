@@ -2356,3 +2356,1626 @@ CREATE TABLE Variable(
 	preguntaID INT,
 	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID)
 ); [42101-197]
+2018-10-09 09:20:02 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID)
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID)
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID)
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID)
+); [42101-197]
+2018-10-09 09:26:32 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 09:49:08 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 10:10:29 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 10:52:55 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 11:03:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 11:04:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 11:27:34 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 11:31:35 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 12:27:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 12:29:58 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 15:22:21 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 17:29:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 17:30:40 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Column "preguntaID" not found [42122-197]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:357)
+	at org.h2.message.DbException.get(DbException.java:179)
+	at org.h2.message.DbException.get(DbException.java:155)
+	at org.h2.jdbc.JdbcResultSet.getColumnIndex(JdbcResultSet.java:3174)
+	at org.h2.jdbc.JdbcResultSet.get(JdbcResultSet.java:3247)
+	at org.h2.jdbc.JdbcResultSet.getInt(JdbcResultSet.java:346)
+	at projecto_ams.ControladorBD.agrInciso(ControladorBD.java:317)
+	at projecto_ams.AgregarPregunta.lambda$display$8(AgregarPregunta.java:160)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8413)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:417)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._enterNestedEventLoopImpl(Native Method)
+	at com.sun.glass.ui.win.WinApplication._enterNestedEventLoop(WinApplication.java:204)
+	at com.sun.glass.ui.Application.enterNestedEventLoop(Application.java:511)
+	at com.sun.glass.ui.EventLoop.enter(EventLoop.java:107)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.enterNestedEventLoop(QuantumToolkit.java:583)
+	at javafx.stage.Stage.showAndWait(Stage.java:474)
+	at projecto_ams.AgregarPregunta.display(AgregarPregunta.java:203)
+	at projecto_ams.Projecto_AMS.lambda$start$11(Projecto_AMS.java:174)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:49)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Node.fireEvent(Node.java:8413)
+	at javafx.scene.control.Button.fire(Button.java:185)
+	at com.sun.javafx.scene.control.behavior.ButtonBehavior.mouseReleased(ButtonBehavior.java:182)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:96)
+	at com.sun.javafx.scene.control.skin.BehaviorSkinBase$1.handle(BehaviorSkinBase.java:89)
+	at com.sun.javafx.event.CompositeEventHandler$NormalEventHandlerRecord.handleBubblingEvent(CompositeEventHandler.java:218)
+	at com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:80)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:238)
+	at com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:191)
+	at com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.scene.Scene$MouseHandler.process(Scene.java:3757)
+	at javafx.scene.Scene$MouseHandler.access$1500(Scene.java:3485)
+	at javafx.scene.Scene.impl_processMouseEvent(Scene.java:1762)
+	at javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2494)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:381)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:295)
+	at java.security.AccessController.doPrivileged(Native Method)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$353(GlassViewEventHandler.java:417)
+	at com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:389)
+	at com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:416)
+	at com.sun.glass.ui.View.handleMouseEvent(View.java:555)
+	at com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at com.sun.glass.ui.win.WinApplication.lambda$null$147(WinApplication.java:177)
+	at java.lang.Thread.run(Thread.java:748)
+2018-10-10 18:01:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:04:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:09:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:12:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:15:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:18:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Syntax error in SQL statement "SELECT T.NOMBRETEMA AS 'TEMA'[*],T.MATERIAID
+FROM TEMA T
+WHERE T.TEMAID=1; "; expected "identifier"; SQL statement:
+SELECT t.nombreTema AS 'TEMA',t.materiaID
+FROM Tema t
+WHERE t.temaID=1; [42001-197]
+2018-10-10 18:21:54 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:22:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:25:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:25:53 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:26:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:26:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:26:51 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:27:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:28:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: No data is available [2000-197]
+2018-10-10 18:28:36 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:28:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 18:30:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:51:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 18:51:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 18:54:47 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 19:02:57 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 19:04:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Una cosa' (8)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Una cosa','Una cosa',0,2); [22001-197]
+2018-10-10 19:04:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:05:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Pregunta;CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Inciso;CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+DROP TABLE IF EXISTS Variable;CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 19:05:44 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:11:16 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'UNA COSA MUY LARGA A' (20)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('UNA COSA MUY LARGA A','UNA COSA MUY LARGA A',0,1); [22001-197]
+2018-10-10 19:11:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:13:49 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:15:13 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:22:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:24:37 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:26:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:28:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:30:07 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: The object is already closed [90007-197]
+2018-10-10 19:43:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 19:46:11 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 20:40:19 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 20:56:52 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 21:01:06 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 21:15:45 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 21:26:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-10 21:27:27 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-11 11:50:42 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-11 12:07:17 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-11 12:09:50 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-11 12:11:25 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Respuesta' (9)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Respuesta','Quien sabe',1,4); [22001-197]
+2018-10-11 13:11:04 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-12 08:53:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-12 08:54:41 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-12 08:55:39 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Table "MATERIA" already exists; SQL statement:
+CREATE TABLE Materia(
+	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreMateria CHAR(100) UNIQUE
+);
+
+CREATE TABLE Tema(
+	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	nombreTema VARCHAR(100),
+	materiaID INT,
+	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE
+);
+CREATE TABLE Pregunta(
+	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	pregunta VARCHAR(200),
+	tipoPregunta VARCHAR(30),
+	temaID INT,
+	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE
+);
+CREATE TABLE Inciso(
+	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	letraInciso VARCHAR(1),
+	inciso VARCHAR(200),
+	esRespuesta BOOLEAN,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+);
+CREATE TABLE Variable(
+	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,
+	variable VARCHAR(5),
+	rangoMin INT,
+	rangoMax INT,
+	preguntaID INT,
+	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE
+); [42101-197]
+2018-10-12 09:02:24 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Respuesta' (9)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Respuesta','a',1,1); [22001-197]
+2018-10-12 09:06:00 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Respuesta' (9)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Respuesta','a',1,1); [22001-197]
+2018-10-12 09:10:33 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Respuesta' (9)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Respuesta','a',1,1); [22001-197]
+2018-10-12 09:14:26 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Respuesta' (9)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Respuesta','a',1,1); [22001-197]
+2018-10-12 09:18:20 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Respuesta' (9)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Respuesta','a',1,1); [22001-197]
+2018-10-12 09:39:03 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLException: Value too long for column "LETRAINCISO VARCHAR(1)": "'Respuesta' (9)"; SQL statement:
+INSERT INTO Inciso(letraInciso,inciso,esRespuesta,preguntaID) VALUES('Respuesta','a',1,1); [22001-197]
