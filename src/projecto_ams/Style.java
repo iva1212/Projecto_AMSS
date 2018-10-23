@@ -64,6 +64,15 @@ public class Style {
 "    -fx-padding: 3 30 3 30;\n" +
 "    -fx-text-fill: #242d35;\n" +
 "    -fx-font-size: 14px;\n";
+      public static String Lion_Red="-fx-background-color: \n" +
+"        rgba(0,0,0,0.08),\n" +
+"        linear-gradient(#9a9a9a, #909090),\n" +
+"        linear-gradient(white 0%, #FF6464 50%, #EC9696 51%, #F25A5A 100%);\n" +
+"    -fx-background-insets: 0 0 -1 0,0,1;\n" +
+"    -fx-background-radius: 5,5,4;\n" +
+"    -fx-padding: 3 30 3 30;\n" +
+"    -fx-text-fill: #242d35;\n" +
+"    -fx-font-size: 14px;\n";
      public static String Lion_default="-fx-background-color: \n" +
 "        rgba(0,0,0,0.08),\n" +
 "        linear-gradient(#5a61af, #51536d),\n" +
@@ -73,6 +82,16 @@ public class Style {
 "    -fx-padding: 3 30 3 30;\n" +
 "    -fx-text-fill: #242d35;\n" +
 "    -fx-font-size: 14px;";
+     public static String Lion_default_Red="-fx-background-color: \n" +
+"        rgba(0,0,0,0.08),\n" +
+"        linear-gradient(#5a61af, #51536d),\n" +
+"        linear-gradient(#FFE4E4 0%,#FBCECE 10%, #FBA5A5 50%, #FB8888 51%, #FFD5D5 100%);\n" +
+"    -fx-background-insets: 0 0 -1 0,0,1;\n" +
+"    -fx-background-radius: 5,5,4;\n" +
+"    -fx-padding: 3 30 3 30;\n" +
+"    -fx-text-fill: #242d35;\n" +
+"    -fx-font-size: 14px;";
+     
      public static String Montserrat_Light=" -fx-font-family: \"Montserrat-Light\";\n" +
 "    -fx-font-size: 20;\n"+"-fx-font-weight: bold;";
      public static String  Styled_Select="background: url(http://i62.tinypic.com/15xvbd5.png) no-repeat 96% 0;\n" +

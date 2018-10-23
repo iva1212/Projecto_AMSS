@@ -23,7 +23,7 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class AgregarVariable {
-     public static void display(){
+     public static void display(Pregunta preg,String nomVar){
         Stage window= new Stage();
         
         window.initModality(Modality.APPLICATION_MODAL);
@@ -34,12 +34,16 @@ public class AgregarVariable {
         Label text=new Label("Variable:");
         Label text2=new Label("Rango Min:");
         Label text3=new Label("Rango Max:");
+        Label var=new Label();
+        var.setText(nomVar);
         text.setTextFill(Color.web("#000000"));
         text.setStyle(Style.Montserrat_Light);
         text2.setTextFill(Color.web("#000000"));
         text2.setStyle(Style.Montserrat_Light);
         text3.setTextFill(Color.web("#000000"));
         text3.setStyle(Style.Montserrat_Light);
+        var.setTextFill(Color.web("#000000"));
+        var.setStyle(Style.Montserrat_Light);
         
         Button btnAceptar=new Button("Agregar");
         btnAceptar.setPrefSize(150, 30);
@@ -50,10 +54,8 @@ public class AgregarVariable {
         btnAceptar.setOnMouseEntered(e->btnAceptar.setStyle(Style.Lion_default));
         btnAceptar.setOnMouseExited(e->btnAceptar.setStyle(Style.Lion));
         
-        TextArea area=new TextArea();
         TextArea area2=new TextArea();
         TextArea area3=new TextArea();
-        area.setPrefSize(200, 20);
         area2.setPrefSize(70, 20);
         area3.setPrefSize(70, 20);
         
@@ -64,7 +66,7 @@ public class AgregarVariable {
         hbox.setStyle("-fx-background-color: #73A86F");
         hbox2.setStyle("-fx-background-color: #73A86F");
         bottom.setStyle("-fx-background-color: #73A86F");
-        hbox.getChildren().addAll(text,area);
+        hbox.getChildren().addAll(text,var);
         hbox2.getChildren().addAll(text2,area2,text3,area3);
         
         bottom.getChildren().add(btnAceptar);
@@ -77,7 +79,6 @@ public class AgregarVariable {
         vbox.setStyle("-fx-background-color: #73A86F");
         
         btnAceptar.setOnAction(e-> {
-            ControladorBD.agrMateria(area.getText());
             window.close();
         });//cambiar cuando se implemente la base de datos
         

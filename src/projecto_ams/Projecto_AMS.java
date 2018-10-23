@@ -7,11 +7,8 @@ package projecto_ams;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
+
 import javafx.application.Application;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -36,36 +33,63 @@ import javafx.scene.text.FontPosture;
 import javafx.scene.text.FontWeight;
 import javafx.stage.Stage;
 
+
 /**
  *
  * @author ivann
  */
 public class Projecto_AMS extends Application {
     
+    private List<String> materias;
+    private List<Pregunta> preguntas;
+    private ComboBox comboMateria;
+    private ComboBox comboTema;
+    private Button addMateria;
+    private Button addTema;
+    private Button deletMateria;
+    private Button deletTema;
+    private Button addPregunta;
+    private Button crearExamen;
+    private  Label labelMateria;
+    private  Label labelTema;
+    private TableView tablaPreguntas;
+    
     @Override
     public void start(Stage primaryStage){
-        ControladorBD.crearBase();
-        List<String> options =new ArrayList<>();
-        List<Pregunta> preguntas=ControladorBD.leerPreguntas();
-        options=ControladorBD.leerMaterias();
         
-        ComboBox comboBox = new ComboBox();
-        for(int i=0;i<options.size();i++){
-            comboBox.getItems().add(options.get(i));
+        ControladorBD.crearBase(); //cambiar para cambiar
+        //Inicializacionde variables
+        materias =new ArrayList<>();
+        comboMateria = new ComboBox();
+        comboTema = new ComboBox();
+        addMateria=new Button("Agregar Materia");
+        addTema=new Button("Agregar Tema");
+        deletMateria=new Button("Borrar Materia");
+        deletTema=new Button("Borrar tema");
+        addPregunta=new Button("Agregar Pregunta");
+        crearExamen=new Button("Crear Examen");
+        labelMateria=new Label("Materia:");
+        labelTema=new Label("Tema:");
+        tablaPreguntas=new TableView();
+        
+        //consiguiendo informacion de la base de datos
+        preguntas=ControladorBD.leerPreguntas();
+        materias=ControladorBD.leerMaterias();
+        
+        //Agregando informacion al ComboBox de Materia
+        for(int i=0;i<materias.size();i++){
+            comboMateria.getItems().add(materias.get(i));
         }
-        ComboBox comboBox2 = new ComboBox();
         
-        comboBox.setPrefSize(150, 30);
-        comboBox2.setPrefSize(150, 30);
+        //
+        //comboMateria.getSelectionModel().selectFirst();
+        
+        //Estableciendo las dimenciones de los COmboBoxes
+        comboMateria.setPrefSize(150, 30);
+        comboTema.setPrefSize(150, 30);
         
         
-        Button addMateria=new Button("Agregar Materia");
-        Button addTema=new Button("Agregar Tema");
-        Button deletMateria=new Button("Borrar Materia");
-        Button deletTema=new Button("Borrar tema");
-        Button addPregunta=new Button("Agregar Pregunta");
-        Button crearExamen=new Button();
-        crearExamen.setText("Crear Examen");
+       
         addMateria.setStyle(Style.Lion);
         addTema.setStyle(Style.Lion);
         addPregunta.setStyle(Style.Lion);
@@ -88,24 +112,21 @@ public class Projecto_AMS extends Application {
         deletMateria.setOnMouseExited(e->deletMateria.setStyle(Style.Lion));
         deletTema.setOnMouseEntered(e->deletTema.setStyle(Style.Lion_default));
         deletTema.setOnMouseExited(e->deletTema.setStyle(Style.Lion));
-        //Initilizing the title
-        Label text1=new Label("Materia:");
-        Label text2=new Label("Tema:");
+        
         //Styling the main title
         Font.loadFont(Projecto_AMS.class.getResource("Montserrat-Light.ttf").toExternalForm(), 20);
-        text1.setTextFill(Color.web("#000000"));
-        text1.setStyle(Style.Montserrat_Light);
-        text2.setTextFill(Color.web("#000000"));
-        text2.setStyle(Style.Montserrat_Light);
+        labelMateria.setTextFill(Color.web("#000000"));
+        labelMateria.setStyle(Style.Montserrat_Light);
+        labelTema.setTextFill(Color.web("#000000"));
+        labelTema.setStyle(Style.Montserrat_Light);
         
         //Table inftomation
-        TableView table=new TableView();
         
         TableColumn MateriaCol = new TableColumn("Materia");
         TableColumn TemaCol = new TableColumn("Tema");
         TableColumn PreguntaCol = new TableColumn("Pregunta");
         TableColumn TipoCol=new TableColumn("Tipo"); 
-        TableColumn ModCol=new TableColumn("Modificar");
+        TableColumn ElimCol=new TableColumn("Eliminar");
         
         MateriaCol.setCellValueFactory(
                new PropertyValueFactory<Pregunta,String>("materia")
@@ -119,17 +140,18 @@ public class Projecto_AMS extends Application {
         TipoCol.setCellValueFactory(
                 new PropertyValueFactory<Pregunta,String>("tipo")
         );
+        ElimCol.setCellFactory(tc -> new BorrarPregunta<>());
         
         MateriaCol.setPrefWidth(175);
         TemaCol.setPrefWidth(175);
         PreguntaCol.setPrefWidth(450);
         TipoCol.setPrefWidth(175);
-        ModCol.setPrefWidth(175);
-        table.getColumns().addAll(MateriaCol, TemaCol, PreguntaCol,TipoCol,ModCol);
-        table.prefHeight(350);
-        table.prefWidth(500);
+        ElimCol.setPrefWidth(175);
+        tablaPreguntas.getColumns().addAll(MateriaCol, TemaCol, PreguntaCol,TipoCol,ElimCol);
+        tablaPreguntas.prefHeight(350);
+        tablaPreguntas.prefWidth(500);
         for(int i=0;i<preguntas.size();i++){
-            table.getItems().add(preguntas.get(i));
+            tablaPreguntas.getItems().add(preguntas.get(i));
         }
         //Setting the layout of the MAIN screen
         HBox root = new HBox();
@@ -145,7 +167,7 @@ public class Projecto_AMS extends Application {
         Region r = new Region();
         VBox.setVgrow(r, Priority.ALWAYS);
         VBox vbox=new VBox(20);
-        vbox.getChildren().add(table);
+        vbox.getChildren().add(tablaPreguntas);
         
         
         
@@ -157,23 +179,23 @@ public class Projecto_AMS extends Application {
         borderPane.setBottom(bottom);
         borderPane.setStyle("-fx-background-color: #73A86F");
         //Adding the Title and the buttons to the layout
-        root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+        root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);
         bottom.getChildren().addAll(addPregunta,crearExamen);
         
-        //actions of the table
-        table.setRowFactory(event-> {TableRow<Pregunta> rowPregunta=new TableRow<>();
+        //actions of the tablaPreguntas
+        tablaPreguntas.setRowFactory(event-> {TableRow<Pregunta> rowPregunta=new TableRow<>();
         rowPregunta.setOnMouseClicked(e-> {
             if (e.getClickCount() == 2 && (! rowPregunta.isEmpty()) ){
                 Pregunta preg=rowPregunta.getItem();
                 System.out.println(preg.getPreguntaID());
                 preg.setI(ControladorBD.leerIncisos(preg));
-                AgregarPregunta.display(comboBox,comboBox2,preg);
+                AgregarPregunta.display(comboMateria,comboTema,preg);
                 root.getChildren().clear();
-                root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+                root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);
                 List<Pregunta> pregu=ControladorBD.leerPreguntas();
-                table.getItems().clear();
+                tablaPreguntas.getItems().clear();
                 for(int i=0;i<pregu.size();i++){
-                    table.getItems().add(pregu.get(i));
+                    tablaPreguntas.getItems().add(pregu.get(i));
                 }
             } 
         }); return rowPregunta;
@@ -182,30 +204,30 @@ public class Projecto_AMS extends Application {
         
         
         //Action of comboBoxes
-        comboBox.setOnAction(e->{
+        comboMateria.setOnAction(e->{
             List<String> op =new ArrayList<>();
-            op=ControladorBD.leerTemas(comboBox.getValue().toString());
-            comboBox2.getItems().clear();
+            op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+            comboTema.getItems().clear();
             for(int i=0;i<op.size();i++){
-                comboBox2.getItems().add(op.get(i));
+                comboTema.getItems().add(op.get(i));
             }
             List<Pregunta> op2 =new ArrayList<>();
             op2=ControladorBD.leerPreguntas();
-            table.getItems().clear();
+            tablaPreguntas.getItems().clear();
             for(int i=0;i<op2.size();i++){
-                if(op2.get(i).getMateria().equals(comboBox.getValue().toString())){
-                    table.getItems().add(op2.get(i));
+                if(op2.get(i).getMateria().equals(comboMateria.getValue().toString())){
+                    tablaPreguntas.getItems().add(op2.get(i));
                 }
             }
             
         });
-        comboBox2.setOnAction(e->{
+        comboTema.setOnAction(e->{
             List<Pregunta> op =new ArrayList<>();
             op=ControladorBD.leerPreguntas();
-            table.getItems().clear();
+            tablaPreguntas.getItems().clear();
             for(int i=0;i<op.size();i++){
-                if(op.get(i).getMateria().equals(comboBox.getValue().toString()) && op.get(i).getTema().equals(comboBox2.getValue().toString()) ){
-                    table.getItems().add(op.get(i));
+                if(op.get(i).getMateria().equals(comboMateria.getValue().toString()) && op.get(i).getTema().equals(comboTema.getValue().toString()) ){
+                    tablaPreguntas.getItems().add(op.get(i));
                 }
             }
         
@@ -213,14 +235,16 @@ public class Projecto_AMS extends Application {
         //Actions of buttons
         addPregunta.setOnAction(e -> {
             Pregunta preg=new Pregunta();
-            AgregarPregunta.display(comboBox,comboBox2,preg);
+            AgregarPregunta.display(comboMateria,comboTema,preg);
             root.getChildren().clear();
-            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+            root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);
             //table.getItems().clear();
             List<Pregunta> pregu=ControladorBD.leerPreguntas();
-            table.getItems().clear();
+            tablaPreguntas.getItems().clear();
             for(int i=0;i<pregu.size();i++){
-                table.getItems().add(pregu.get(i));
+                if(pregu.get(i).getMateria().equals(comboMateria.getValue().toString()) && pregu.get(i).getTema().equals(comboTema.getValue().toString()) ){
+                    tablaPreguntas.getItems().add(pregu.get(i));
+                }
             }
         });
         addMateria.setOnAction(new EventHandler<ActionEvent>() {
@@ -229,9 +253,9 @@ public class Projecto_AMS extends Application {
                 AgregarMateria.display();
                 List<String> op =new ArrayList<>();
                 op=ControladorBD.leerMaterias();
-                comboBox.getItems().clear();
+                comboMateria.getItems().clear();
                 for(int i=0;i<op.size();i++){
-                    comboBox.getItems().add(op.get(i));
+                    comboMateria.getItems().add(op.get(i));
                  } 
             }
         });
@@ -239,60 +263,60 @@ public class Projecto_AMS extends Application {
             @Override
             public void handle(ActionEvent e) {
                 System.out.println("Si entro aqui");
-                AgregarTema.display(comboBox);
+                AgregarTema.display(comboMateria);
                 List<String> op =new ArrayList<>();
-                if(!comboBox.getSelectionModel().isEmpty()){
-                    op=ControladorBD.leerTemas(comboBox.getValue().toString());
-                    comboBox2.getItems().clear();
+                if(!comboMateria.getSelectionModel().isEmpty()){
+                    op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    comboTema.getItems().clear();
 
                     for(int i=0;i<op.size();i++){
-                        comboBox2.getItems().add(op.get(i));
+                        comboTema.getItems().add(op.get(i));
                     }
                 }
                 root.getChildren().clear();
-                root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+                root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);
             }
         });
         deletMateria.setOnAction(e ->{
-            BorrarMateria.display(comboBox);
+            BorrarMateria.display(comboMateria);
             List<String> op =new ArrayList<>();
                 op=ControladorBD.leerMaterias();
-                comboBox.getItems().clear();
+                comboMateria.getItems().clear();
                 for(int i=0;i<op.size();i++){
-                    comboBox.getItems().add(op.get(i));
+                    comboMateria.getItems().add(op.get(i));
                  } 
-            if(!comboBox.getSelectionModel().isEmpty()){
-                    op=ControladorBD.leerTemas(comboBox.getValue().toString());
-                    comboBox2.getItems().clear();
+            if(!comboMateria.getSelectionModel().isEmpty()){
+                    op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    comboTema.getItems().clear();
                     for(int i=0;i<op.size();i++){
-                        comboBox2.getItems().add(op.get(i));
+                        comboTema.getItems().add(op.get(i));
                     }
                 }
             List<Pregunta> pregu=ControladorBD.leerPreguntas();
-            table.getItems().clear();
+            tablaPreguntas.getItems().clear();
             for(int i=0;i<pregu.size();i++){
-            table.getItems().add(pregu.get(i));
+            tablaPreguntas.getItems().add(pregu.get(i));
             }
             root.getChildren().clear();
-            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+            root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);
         });
         deletTema.setOnAction(e->{
-            BorrarTema.display(comboBox, comboBox2);
+            BorrarTema.display(comboMateria, comboTema);
             List<String> op =new ArrayList<>();
-                if(!comboBox.getSelectionModel().isEmpty()){
-                    op=ControladorBD.leerTemas(comboBox.getValue().toString());
-                    comboBox2.getItems().clear();
+                if(!comboMateria.getSelectionModel().isEmpty()){
+                    op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    comboTema.getItems().clear();
                     for(int i=0;i<op.size();i++){
-                        comboBox2.getItems().add(op.get(i));
+                        comboTema.getItems().add(op.get(i));
                     }
                 }
              List<Pregunta> pregu=ControladorBD.leerPreguntas();
-            table.getItems().clear();
+            tablaPreguntas.getItems().clear();
             for(int i=0;i<pregu.size();i++){
-            table.getItems().add(pregu.get(i));
+            tablaPreguntas.getItems().add(pregu.get(i));
         }
             root.getChildren().clear();
-            root.getChildren().addAll(text1,comboBox,text2,comboBox2,addMateria,addTema,deletMateria,deletTema);
+            root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);
         });
         //Adding the layout to the scene
         Scene scene = new Scene(borderPane,1150,614);

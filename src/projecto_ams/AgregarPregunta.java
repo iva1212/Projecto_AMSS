@@ -46,22 +46,22 @@ public class AgregarPregunta {
         Inciso falso=new Inciso("b","Falso",false); //cambiar si es posible
         Stage window= new Stage();
         
-        TableView table=new TableView();
-        TableColumn VariableCol = new TableColumn("Variable");
-        TableColumn MinCol = new TableColumn("Rango Min");
-        TableColumn MaxCol = new TableColumn("Rango Max");
-        VariableCol.setPrefWidth(75);
-        MinCol.setPrefWidth(75);
-        MaxCol.setPrefWidth(75);
-        table.getColumns().addAll(VariableCol,MinCol,MaxCol);
-        table.maxHeight(100);
-        table.prefWidth(135);
+//        TableView table=new TableView();
+//        TableColumn VariableCol = new TableColumn("Variable");
+//        TableColumn MinCol = new TableColumn("Rango Min");
+//        TableColumn MaxCol = new TableColumn("Rango Max");
+//        VariableCol.setPrefWidth(75);
+//        MinCol.setPrefWidth(75);
+//        MaxCol.setPrefWidth(75);
+//        table.getColumns().addAll(VariableCol,MinCol,MaxCol);
+//        table.maxHeight(100);
+//        table.prefWidth(135);
      
         
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Agregar Pregunta");
-        window.setMinWidth(800);
-        window.setMinHeight(700);
+        window.setMinWidth(550);
+        window.setMinHeight(450);
         
         ObservableList<String> options = 
         FXCollections.observableArrayList(
@@ -122,7 +122,7 @@ public class AgregarPregunta {
         HBox top=new HBox(10);
         HBox bottom=new HBox(10);
         VBox middle=new VBox(10);
-        VBox tabla=new VBox(10);
+        //VBox tabla=new VBox(10);
         HBox secPregunta=new HBox(10);
         HBox masMenos=new HBox(10);
         secPregunta.getChildren().addAll(text4,preg);
@@ -131,7 +131,7 @@ public class AgregarPregunta {
         top.setAlignment(Pos.TOP_LEFT);
         top.setPrefSize(800, 100);
         bottom.setAlignment(Pos.TOP_RIGHT);
-        tabla.setAlignment(Pos.CENTER_RIGHT);
+        //tabla.setAlignment(Pos.CENTER_RIGHT);
         bottom.setPrefSize(800, 50);
         bottom.getChildren().addAll(btnAgregar);
         middle.getChildren().addAll(secPregunta);
@@ -144,13 +144,16 @@ public class AgregarPregunta {
                 middle.getChildren().add(masMenos);
             }
         }
-        tabla.getChildren().addAll(table,agrVariable);
+        //tabla.getChildren().addAll(agrVariable);
         combo3.setOnAction(new EventHandler<ActionEvent>(){
             @Override
             public void handle(ActionEvent event) {
                 if(combo3.getValue()=="Opcion Multiple"){
                     middle.getChildren().clear();
                     middle.getChildren().add(secPregunta);
+                    if(pregunta.getTipo().equals("Abierta")){
+                        pregunta.getI().get(0).setLetra("a");
+                    }
                     for(int i=0;i<pregunta.getI().size();i++){
                         middle.getChildren().add(pregunta.getI().get(i).display());
                     }
@@ -168,12 +171,12 @@ public class AgregarPregunta {
                     
          });
         btnAgregar.setOnAction(e -> {
-            if(pregunta.getPreguntaID()==-1){
-                if(combo3.getValue()=="Abierta"){
+            if(pregunta.getPreguntaID()==-1 || !combo3.getValue().equals(pregunta.getTipo())){
+                if(combo3.getValue().equals("Abierta")){
                     pregunta.getI().clear();
                     pregunta.getI().add(abierta);
                 }
-                else if(combo3.getValue()=="V o F"){
+                else if(combo3.getValue().equals("V o F")){
                     pregunta.getI().clear();
                     pregunta.getI().add(verdad);
                     pregunta.getI().add(falso);
@@ -183,6 +186,21 @@ public class AgregarPregunta {
                 pregunta.getI().get(i).save();
             }
             pregunta.setPregunta(preg.getText());
+            List<String> variables=new ArrayList<>();;
+            
+            for(int i=0;i<preg.getText().length();i++){
+                char c=preg.getText().charAt(i);
+                if(c=='#'){
+                    String sub=preg.getText().substring(i, i+2);
+                    variables.add(sub);
+                    i++;
+                }
+            }
+            while(!variables.isEmpty()){
+                AgregarVariable.display(pregunta,variables.get(0));
+                variables.remove(0);
+                
+            }
             pregunta.setTipo(combo3.getValue().toString());
             ControladorBD.deletPregunta(pregunta);
             ControladorBD.agrPregunta(comboBox2.getValue().toString(), pregunta);
@@ -218,7 +236,7 @@ public class AgregarPregunta {
             middle.getChildren().add(masMenos);
         });
         agrVariable.setOnAction(e ->{
-            AgregarVariable.display();
+            //AgregarVariable.display();
         });
                 
         BorderPane borderPane=new BorderPane();
@@ -226,7 +244,7 @@ public class AgregarPregunta {
         borderPane.setTop(top);
         borderPane.setBottom(bottom);
         borderPane.setLeft(middle);
-        borderPane.setRight(tabla);
+        //borderPane.setRight(tabla);
         Scene scene=new Scene(borderPane);
         window.setScene(scene);
         window.showAndWait();

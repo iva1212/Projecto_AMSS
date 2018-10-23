@@ -12,8 +12,7 @@ import java.sql.SQLException;
 import java.sql.Statement; 
 import java.util.ArrayList;
 import java.util.List;
-import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
+
 
 /**
  *
@@ -41,20 +40,20 @@ public class ControladorBD {
          //STEP 3: Execute a query 
          System.out.println("Creating table in given database..."); 
          stmt = conn.createStatement(); 
-         String sql = "DROP TABLE IF EXISTS Materia;"+
+         String sql = 
 "CREATE TABLE Materia(\n" +
 "	materiaID INTEGER PRIMARY KEY AUTO_INCREMENT,\n" +
 "	nombreMateria CHAR(100) UNIQUE\n" +
 ");\n" +
 "\n" +
-"DROP TABLE IF EXISTS Tema;"+
+
 "CREATE TABLE Tema(\n" +
 "	temaID INTEGER PRIMARY KEY AUTO_INCREMENT,\n" +
 "	nombreTema VARCHAR(100),\n" +
 "	materiaID INT,\n" +
 "	FOREIGN KEY (materiaID) REFERENCES Materia(materiaID) ON DELETE CASCADE\n" +
 ");\n" +
-"DROP TABLE IF EXISTS Pregunta;"+
+
 "CREATE TABLE Pregunta(\n" +
 "	preguntaID INTEGER PRIMARY KEY AUTO_INCREMENT,\n" +
 "	pregunta VARCHAR(200),\n" +
@@ -62,7 +61,7 @@ public class ControladorBD {
 "	temaID INT,\n" +
 "	FOREIGN KEY (temaID) REFERENCES Tema(temaID) ON DELETE CASCADE\n" +
 ");\n" +
-"DROP TABLE IF EXISTS Inciso;"+
+
 "CREATE TABLE Inciso(\n" +
 "	incisoID INTEGER PRIMARY KEY AUTO_INCREMENT,\n" +
 "	letraInciso VARCHAR(10),\n" +
@@ -71,7 +70,7 @@ public class ControladorBD {
 "	preguntaID INT,\n" +
 "	FOREIGN KEY (preguntaID) REFERENCES Pregunta(preguntaID) ON DELETE CASCADE\n" +
 ");\n" +
-"DROP TABLE IF EXISTS Variable;"+
+
 "CREATE TABLE Variable(\n" +
 "	variableID INTEGER PRIMARY KEY AUTO_INCREMENT,\n" +
 "	variable VARCHAR(5),\n" +
@@ -88,7 +87,7 @@ public class ControladorBD {
          conn.close(); 
       } catch(SQLException se) { 
          //Handle errors for JDBC 
-         se.printStackTrace(); 
+         se.getMessage();
       } catch(Exception e) { 
          //Handle errors for Class.forName 
          e.printStackTrace(); 

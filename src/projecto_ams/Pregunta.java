@@ -21,6 +21,7 @@ public class Pregunta {
     private int numeroIncisos;
     private int preguntaID;
     private List<Inciso> I;
+    private List<Variable> V;
     public Pregunta(){
         this.tipo="Opcion Multiple";
         this.pregunta="";
@@ -29,7 +30,7 @@ public class Pregunta {
         this.preguntaID=-1;
         this.numeroIncisos=4;
         this.I=new ArrayList<>();
-        
+        this.V=new ArrayList<>();
         for(int i=0;i<this.numeroIncisos;++i){
             Inciso in=new Inciso((char) (I.size()+'a'));
             I.add(in);
@@ -40,6 +41,8 @@ public class Pregunta {
         this.materia=materia;
         this.pregunta=pregunta;
         this.tema=tema;
+        this.I=new ArrayList<>();
+        this.V=new ArrayList<>();
     }
 
     public String getMateria() {
@@ -96,6 +99,14 @@ public class Pregunta {
 
     public void setTipo(String tipo) {
         this.tipo = tipo;
+    }
+
+    public void setV(List<Variable> V) {
+        this.V = V;
+    }
+
+    public List<Variable> getV() {
+        return V;
     }
     
     
