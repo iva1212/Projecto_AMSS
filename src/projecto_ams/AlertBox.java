@@ -20,20 +20,27 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class AlertBox {
+    private static  Stage window;
+    private static  Label label;
+    private static Button closeButton;
+    private static VBox layout;
+    
     public static void display(String title, String message){
-        Stage window= new Stage();
+        window= new Stage();
+        label=new Label();
+        closeButton=new Button();
+        layout=new VBox(10);
+        
         
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(250);
         
         
-        Label label=new Label();
         label.setText(message);
-        Button closeButton=new Button();
         closeButton.setText("Close");
         closeButton.setOnAction(e -> window.close());
-        VBox layout=new VBox(10);
+        
         layout.getChildren().addAll(label,closeButton);
         layout.setAlignment(Pos.CENTER);
         

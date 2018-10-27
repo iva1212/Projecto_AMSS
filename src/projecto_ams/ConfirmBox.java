@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package projecto_ams;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -20,20 +17,31 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class ConfirmBox {
-    public static boolean answer;
+    private static boolean answer;
+    private static Stage window;
+    private static Label label;
+    private static Button yesButton;
+    private static Button noButton;
+    private static VBox layout;
+    
     public static boolean display(String title, String message){
-        Stage window= new Stage();
+        window= new Stage();
+        label=new Label();
+        
+        yesButton=new Button("Confirmar");
+        noButton=new Button("Cancelar");
+        
+        layout=new VBox(10);
+        
         
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle(title);
         window.setMinWidth(300);
         
-        Label label=new Label();
         label.setText(message);
         label.setStyle(Style.Montserrat_Light);
         
-        Button yesButton=new Button("Confirmar");
-        Button noButton=new Button("Cancelar");
+        
         
         yesButton.setStyle(Style.Lion);
         noButton.setStyle(Style.Lion_Red);
@@ -52,7 +60,8 @@ public class ConfirmBox {
             answer=false;
             window.close();
         });
-        VBox layout=new VBox(10);
+        
+        
         layout.getChildren().addAll(label,yesButton,noButton);
         layout.setAlignment(Pos.CENTER);
         layout.setStyle("-fx-background-color: #73A86F");

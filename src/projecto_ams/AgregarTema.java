@@ -24,55 +24,72 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class AgregarTema {
+    private static Stage window;
+    private static Label labelMateria;
+    private static Label labelTema;
+    private static Button btnAceptar;
+    private static TextArea areaTema;
+    private static HBox hbox;
+    private static HBox middle;
+    private static HBox bottom;
+    private static VBox vboxPantalla;
+    
     public static void display(ComboBox combo){
-        Stage window= new Stage();
+        window= new Stage();
+        
+        labelMateria=new Label("Materia:");
+        labelTema=new Label("Tema:");
+        
+        btnAceptar=new Button("Agregar");
+        
+        areaTema=new TextArea();
+        
+        hbox=new HBox(20);
+        middle=new HBox(20);
+        bottom=new HBox();
+        vboxPantalla=new VBox(40);
         
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Agregar Materia");
         window.setMinWidth(400);
         window.setMinHeight(200);
         
-        Label text=new Label("Materia:");
-        Label text2=new Label("Tema:");
-        text.setTextFill(Color.web("#000000"));
-        text.setStyle(Style.Montserrat_Light);
-        text2.setTextFill(Color.web("#000000"));
-        text2.setStyle(Style.Montserrat_Light);
         
-        Button btnAceptar=new Button("Agregar");
+        labelMateria.setTextFill(Color.web("#000000"));
+        labelMateria.setStyle(Style.Montserrat_Light);
+        labelTema.setTextFill(Color.web("#000000"));
+        labelTema.setStyle(Style.Montserrat_Light);
+        
         btnAceptar.setPrefSize(150, 30);
         
         btnAceptar.setStyle(Style.Lion);
         btnAceptar.setOnMouseEntered(e->btnAceptar.setStyle(Style.Lion_default));
         btnAceptar.setOnMouseExited(e->btnAceptar.setStyle(Style.Lion));
         
-        TextArea area=new TextArea();
-        area.setPrefSize(200, 20);
+        areaTema.setPrefSize(200, 20);
         
-        HBox hbox=new HBox(20);
-        HBox middle=new HBox(20);
-        HBox bottom=new HBox();
+        
         bottom.setAlignment(Pos.BOTTOM_RIGHT);
         hbox.setStyle("-fx-background-color: #73A86F");
         middle.setStyle("-fx-background-color: #73A86F");
         bottom.setStyle("-fx-background-color: #73A86F");
-        hbox.getChildren().addAll(text,combo);
-        middle.getChildren().addAll(text2,area);
+        hbox.getChildren().addAll(labelMateria,combo);
+        middle.getChildren().addAll(labelTema,areaTema);
         bottom.getChildren().add(btnAceptar);
         
         Region r = new Region();
         VBox.setVgrow(r, Priority.ALWAYS);
         
-        VBox vbox=new VBox(40);
-        vbox.getChildren().addAll(r,hbox,middle,bottom);
-        vbox.setStyle("-fx-background-color: #73A86F");
+            
+        vboxPantalla.getChildren().addAll(r,hbox,middle,bottom);
+        vboxPantalla.setStyle("-fx-background-color: #73A86F");
         
         btnAceptar.setOnAction(e-> {
             System.out.println(combo.getValue());
-            ControladorBD.agrTema(combo.getValue().toString(),area.getText());
+            ControladorBD.agrTema(combo.getValue().toString(),areaTema.getText());
             window.close();
         });//cambiar cuando se implemente la base de datos
-        Scene scene=new Scene(vbox);
+        Scene scene=new Scene(vboxPantalla);
         window.setResizable(false);
         window.setScene(scene);
         window.showAndWait();

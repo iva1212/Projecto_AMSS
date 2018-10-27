@@ -23,29 +23,54 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class AgregarVariable {
+    private static Stage window;
+    private static Label labelVariable;
+    private static Label labelRangoMin;
+    private static Label labelRangoMax;
+    private static Label lableVar;
+    private static Button btnAceptar;
+    private static TextArea areaRangoMin;
+    private static TextArea areaRangoMax;
+    private static HBox hboxVariable;
+    private static HBox hboxRangos;
+    private static HBox hboxButton;
+    private static VBox vboxPantalla;
+    
+    
      public static void display(Pregunta preg,String nomVar){
-        Stage window= new Stage();
+        window= new Stage();
+        labelVariable=new Label("Variable:");
+        labelRangoMin=new Label("Rango Min:");
+        labelRangoMax=new Label("Rango Max:");
+        lableVar=new Label();
+        btnAceptar=new Button("Agregar");
+        
+        areaRangoMin=new TextArea();
+        areaRangoMax=new TextArea();
+        
+        hboxVariable=new HBox(20);
+        hboxRangos=new HBox(20);
+        hboxButton=new HBox();
+        
+        vboxPantalla=new VBox(40);
         
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Agregar Variable");
         window.setMinWidth(400);
         window.setMinHeight(200);
         
-        Label text=new Label("Variable:");
-        Label text2=new Label("Rango Min:");
-        Label text3=new Label("Rango Max:");
-        Label var=new Label();
-        var.setText(nomVar);
-        text.setTextFill(Color.web("#000000"));
-        text.setStyle(Style.Montserrat_Light);
-        text2.setTextFill(Color.web("#000000"));
-        text2.setStyle(Style.Montserrat_Light);
-        text3.setTextFill(Color.web("#000000"));
-        text3.setStyle(Style.Montserrat_Light);
-        var.setTextFill(Color.web("#000000"));
-        var.setStyle(Style.Montserrat_Light);
         
-        Button btnAceptar=new Button("Agregar");
+        lableVar.setText(nomVar);
+        labelVariable.setTextFill(Color.web("#000000"));
+        labelVariable.setStyle(Style.Montserrat_Light);
+        labelRangoMin.setTextFill(Color.web("#000000"));
+        labelRangoMin.setStyle(Style.Montserrat_Light);
+        labelRangoMax.setTextFill(Color.web("#000000"));
+        labelRangoMax.setStyle(Style.Montserrat_Light);
+        lableVar.setTextFill(Color.web("#000000"));
+        lableVar.setStyle(Style.Montserrat_Light);
+        
+        
         btnAceptar.setPrefSize(150, 30);
         
         
@@ -54,36 +79,35 @@ public class AgregarVariable {
         btnAceptar.setOnMouseEntered(e->btnAceptar.setStyle(Style.Lion_default));
         btnAceptar.setOnMouseExited(e->btnAceptar.setStyle(Style.Lion));
         
-        TextArea area2=new TextArea();
-        TextArea area3=new TextArea();
-        area2.setPrefSize(70, 20);
-        area3.setPrefSize(70, 20);
         
-        HBox hbox=new HBox(20);
-        HBox hbox2=new HBox(20);
-        HBox bottom=new HBox();
-        bottom.setAlignment(Pos.BOTTOM_RIGHT);
-        hbox.setStyle("-fx-background-color: #73A86F");
-        hbox2.setStyle("-fx-background-color: #73A86F");
-        bottom.setStyle("-fx-background-color: #73A86F");
-        hbox.getChildren().addAll(text,var);
-        hbox2.getChildren().addAll(text2,area2,text3,area3);
+        areaRangoMin.setPrefSize(70, 20);
+        areaRangoMax.setPrefSize(70, 20);
         
-        bottom.getChildren().add(btnAceptar);
+        
+        hboxButton.setAlignment(Pos.BOTTOM_RIGHT);
+        hboxVariable.setStyle("-fx-background-color: #73A86F");
+        hboxRangos.setStyle("-fx-background-color: #73A86F");
+        hboxButton.setStyle("-fx-background-color: #73A86F");
+        hboxVariable.getChildren().addAll(labelVariable,lableVar);
+        hboxRangos.getChildren().addAll(labelRangoMin,areaRangoMin,labelRangoMax,areaRangoMax);
+        
+        hboxButton.getChildren().add(btnAceptar);
         
         Region r = new Region();
         VBox.setVgrow(r, Priority.ALWAYS);
         
-        VBox vbox=new VBox(40);
-        vbox.getChildren().addAll(r,hbox,hbox2,bottom);
-        vbox.setStyle("-fx-background-color: #73A86F");
+       
+        vboxPantalla.getChildren().addAll(r,hboxVariable,hboxRangos,hboxButton);
+        vboxPantalla.setStyle("-fx-background-color: #73A86F");
         
         btnAceptar.setOnAction(e-> {
+            Variable v=new Variable(nomVar,Integer.parseInt(areaRangoMin.getText()),Integer.parseInt(areaRangoMax.getText()));
+            ControladorBD.agrVariable(v);
             window.close();
         });//cambiar cuando se implemente la base de datos
         
        
-        Scene scene=new Scene(vbox);
+        Scene scene=new Scene(vboxPantalla);
         window.setResizable(false);
         window.setScene(scene);
         window.showAndWait();

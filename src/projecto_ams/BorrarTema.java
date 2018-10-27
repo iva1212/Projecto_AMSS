@@ -24,22 +24,36 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class BorrarTema {
+    private static Stage window;
+    private static Label labelMateria;
+    private static Label labelTema;
+    private static Button btnAceptar;
+    private static HBox hboxMateria;
+    private static HBox hboxTema;
+    private static HBox hboxButton;
+    private static VBox vbox;
+    
+    
     public static void display(ComboBox combo,ComboBox combo2){
-        Stage window= new Stage();
-        
+        window= new Stage();
+        labelMateria=new Label("Materia:");
+        labelTema=new Label("Tema:");
+        btnAceptar=new Button("Borrar");
+        hboxMateria=new HBox(20);
+        hboxTema=new HBox(20);
+        hboxButton=new HBox();
+        vbox=new VBox(40);
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Agregar Materia");
         window.setMinWidth(400);
         window.setMinHeight(200);
         
-        Label text=new Label("Materia:");
-        Label text2=new Label("Tema:");
-        text.setTextFill(Color.web("#000000"));
-        text.setStyle(Style.Montserrat_Light);
-        text2.setTextFill(Color.web("#000000"));
-        text2.setStyle(Style.Montserrat_Light);
         
-        Button btnAceptar=new Button("Borrar");
+        labelMateria.setTextFill(Color.web("#000000"));
+        labelMateria.setStyle(Style.Montserrat_Light);
+        labelTema.setTextFill(Color.web("#000000"));
+        labelTema.setStyle(Style.Montserrat_Light);
+        
         btnAceptar.setPrefSize(150, 30);
         
         btnAceptar.setStyle(Style.Lion);
@@ -48,22 +62,19 @@ public class BorrarTema {
         
         
         
-        HBox hbox=new HBox(20);
-        HBox middle=new HBox(20);
-        HBox bottom=new HBox();
-        bottom.setAlignment(Pos.BOTTOM_RIGHT);
-        hbox.setStyle("-fx-background-color: #73A86F");
-        middle.setStyle("-fx-background-color: #73A86F");
-        bottom.setStyle("-fx-background-color: #73A86F");
-        hbox.getChildren().addAll(text,combo);
-        middle.getChildren().addAll(text2,combo2);
-        bottom.getChildren().add(btnAceptar);
+       
+        hboxButton.setAlignment(Pos.BOTTOM_RIGHT);
+        hboxMateria.setStyle("-fx-background-color: #73A86F");
+        hboxTema.setStyle("-fx-background-color: #73A86F");
+        hboxButton.setStyle("-fx-background-color: #73A86F");
+        hboxMateria.getChildren().addAll(labelMateria,combo);
+        hboxTema.getChildren().addAll(labelTema,combo2);
+        hboxButton.getChildren().add(btnAceptar);
         
         Region r = new Region();
         VBox.setVgrow(r, Priority.ALWAYS);
         
-        VBox vbox=new VBox(40);
-        vbox.getChildren().addAll(r,hbox,middle,bottom);
+        vbox.getChildren().addAll(r,hboxMateria,hboxTema,hboxButton);
         vbox.setStyle("-fx-background-color: #73A86F");
         btnAceptar.setOnAction(e-> {
             ControladorBD.deletTema(combo.getValue().toString(),combo2.getValue().toString());

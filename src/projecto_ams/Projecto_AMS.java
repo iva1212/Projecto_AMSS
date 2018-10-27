@@ -53,6 +53,15 @@ public class Projecto_AMS extends Application {
     private  Label labelMateria;
     private  Label labelTema;
     private TableView tablaPreguntas;
+    private TableColumn MateriaCol;
+    private TableColumn TemaCol;
+    private TableColumn PreguntaCol;
+    private TableColumn TipoCol;
+    private TableColumn ElimCol;
+    private HBox root;
+    private VBox bottom;
+    private VBox tabla;
+    private BorderPane borderPane;
     
     @Override
     public void start(Stage primaryStage){
@@ -71,7 +80,15 @@ public class Projecto_AMS extends Application {
         labelMateria=new Label("Materia:");
         labelTema=new Label("Tema:");
         tablaPreguntas=new TableView();
-        
+        MateriaCol = new TableColumn("Materia");
+        TemaCol = new TableColumn("Tema");
+        PreguntaCol = new TableColumn("Pregunta");
+        TipoCol=new TableColumn("Tipo"); 
+        ElimCol=new TableColumn("Eliminar");
+        root = new HBox();
+        bottom=new VBox();
+        tabla=new VBox(20);
+        borderPane=new BorderPane();
         //consiguiendo informacion de la base de datos
         preguntas=ControladorBD.leerPreguntas();
         materias=ControladorBD.leerMaterias();
@@ -122,11 +139,6 @@ public class Projecto_AMS extends Application {
         
         //Table inftomation
         
-        TableColumn MateriaCol = new TableColumn("Materia");
-        TableColumn TemaCol = new TableColumn("Tema");
-        TableColumn PreguntaCol = new TableColumn("Pregunta");
-        TableColumn TipoCol=new TableColumn("Tipo"); 
-        TableColumn ElimCol=new TableColumn("Eliminar");
         
         MateriaCol.setCellValueFactory(
                new PropertyValueFactory<Pregunta,String>("materia")
@@ -154,8 +166,7 @@ public class Projecto_AMS extends Application {
             tablaPreguntas.getItems().add(preguntas.get(i));
         }
         //Setting the layout of the MAIN screen
-        HBox root = new HBox();
-        VBox bottom=new VBox();
+       
         root.setPadding(new Insets(10));
         root.setSpacing(10);
         bottom.setPadding(new Insets(10));
@@ -166,16 +177,13 @@ public class Projecto_AMS extends Application {
         bottom.setStyle("-fx-background-color: #73A86F");
         Region r = new Region();
         VBox.setVgrow(r, Priority.ALWAYS);
-        VBox vbox=new VBox(20);
-        vbox.getChildren().add(tablaPreguntas);
+        tabla.getChildren().add(tablaPreguntas);
         
-        
-        
-        BorderPane borderPane=new BorderPane();
+       
         
         borderPane.setTop(root);
-        //borderPane.setLeft(vbox);
-        borderPane.setCenter(vbox);
+        //borderPane.setLeft(tabla);
+        borderPane.setCenter(tabla);
         borderPane.setBottom(bottom);
         borderPane.setStyle("-fx-background-color: #73A86F");
         //Adding the Title and the buttons to the layout
@@ -189,6 +197,7 @@ public class Projecto_AMS extends Application {
                 Pregunta preg=rowPregunta.getItem();
                 System.out.println(preg.getPreguntaID());
                 preg.setI(ControladorBD.leerIncisos(preg));
+                preg.setV(ControladorBD.leerVariables(preg));
                 AgregarPregunta.display(comboMateria,comboTema,preg);
                 root.getChildren().clear();
                 root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);

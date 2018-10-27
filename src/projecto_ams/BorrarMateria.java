@@ -24,40 +24,49 @@ import javafx.stage.Stage;
  * @author ivann
  */
 public class BorrarMateria {
+    private static Stage window;
+    private static  Label labelBorrarMat;
+    private static Button btnAceptar;
+    private static HBox hboxMateria=new HBox(20);
+    private static HBox hboxTema=new HBox();
+    private static VBox vboxPantalla=new VBox(40);
+    
      public static void display(ComboBox combo){
-        Stage window= new Stage();
+        window= new Stage();
+        labelBorrarMat=new Label("Materia a Borrar:");
+        btnAceptar=new Button("Borrar");
+        hboxMateria=new HBox(20);
+        hboxTema=new HBox();
+        vboxPantalla=new VBox(40);
         
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Agregar Materia");
         window.setMinWidth(400);
         window.setMinHeight(200);
         
-        Label text=new Label("Materia a Borrar:");
-        text.setTextFill(Color.web("#000000"));
-        text.setStyle(Style.Montserrat_Light);
+        labelBorrarMat.setTextFill(Color.web("#000000"));
+        labelBorrarMat.setStyle(Style.Montserrat_Light);
         
-        Button btnAceptar=new Button("Borrar");
         btnAceptar.setPrefSize(150, 30);
         btnAceptar.setStyle(Style.Lion);
         btnAceptar.setOnMouseEntered(e->btnAceptar.setStyle(Style.Lion_default));
         btnAceptar.setOnMouseExited(e->btnAceptar.setStyle(Style.Lion));
         
         
-        HBox hbox=new HBox(20);
-        HBox bottom=new HBox();
-        bottom.setAlignment(Pos.BOTTOM_RIGHT);
-        hbox.setStyle("-fx-background-color: #73A86F");
-        bottom.setStyle("-fx-background-color: #73A86F");
-        hbox.getChildren().addAll(text,combo);
-        bottom.getChildren().add(btnAceptar);
+        
+        hboxTema.setAlignment(Pos.BOTTOM_RIGHT);
+        hboxMateria.setStyle("-fx-background-color: #73A86F");
+        hboxTema.setStyle("-fx-background-color: #73A86F");
+        hboxMateria.getChildren().addAll(labelBorrarMat,combo);
+        hboxTema.getChildren().add(btnAceptar);
         
         Region r = new Region();
         VBox.setVgrow(r, Priority.ALWAYS);
         
-        VBox vbox=new VBox(40);
-        vbox.getChildren().addAll(r,hbox,bottom);
-        vbox.setStyle("-fx-background-color: #73A86F");
-        Scene scene=new Scene(vbox);
+        
+        vboxPantalla.getChildren().addAll(r,hboxMateria,hboxTema);
+        vboxPantalla.setStyle("-fx-background-color: #73A86F");
+        Scene scene=new Scene(vboxPantalla);
         btnAceptar.setOnAction(e-> {
             ControladorBD.deletMateria((String) combo.getValue());
             window.close();
