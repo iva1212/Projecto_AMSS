@@ -76,7 +76,8 @@ public class CreaciondeExamen {
         }
         crearXML(titulo,subtitulo,preg,numeroExamenes);
         try {
-            crearPDF(titulo,subtitulo);
+            crearPDF(titulo,subtitulo,false);
+            crearPDF(titulo,subtitulo,true);
         } catch (FOPException ex) {
             Logger.getLogger(CreaciondeExamen.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException ex) {
@@ -180,11 +181,17 @@ public class CreaciondeExamen {
             tfe.printStackTrace();
         } 
      }
-     private static void crearPDF(String titulo,String subtitulo) throws FileNotFoundException, TransformerConfigurationException, FOPException, TransformerException, IOException{
+     private static void crearPDF(String titulo,String subtitulo,boolean isRespuesta) throws FileNotFoundException, TransformerConfigurationException, FOPException, TransformerException, IOException{
          // the XSL FO file
          SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");  
          Date date = new Date(); 
-        File xsltFile = new File("templates\\template.xsl");
+         File xsltFile;
+         if(isRespuesta){
+            xsltFile = new File("templates\\template_R.xsl");
+         }
+         else{
+            xsltFile = new File("templates\\template _E.xsl");
+         }
         // the XML file which provides the input
         StreamSource xmlSource = new StreamSource(new File(xmlURL));
         // create an instance of fop factory
@@ -193,7 +200,12 @@ public class CreaciondeExamen {
         FOUserAgent foUserAgent = fopFactory.newFOUserAgent();
         // Setup output
         OutputStream out;
-        out = new java.io.FileOutputStream("Examenes\\Examen_"+titulo+"_"+subtitulo+"_"+formatter.format(date)+".pdf");
+       if(isRespuesta){
+            out = new java.io.FileOutputStream("Examenes\\Respuestas_"+titulo+"_"+subtitulo+"_"+formatter.format(date)+".pdf");
+       }
+       else{
+           out = new java.io.FileOutputStream("Examenes\\Examenes_"+titulo+"_"+subtitulo+"_"+formatter.format(date)+".pdf");
+       }
     
         try {
             // Construct fop with desired output format

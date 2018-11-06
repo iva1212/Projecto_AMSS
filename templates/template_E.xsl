@@ -9,15 +9,14 @@
         </fo:simple-page-master>
       </fo:layout-master-set>
       <fo:page-sequence master-reference="simpleA4">
-        <fo:flow flow-name="xsl-region-body" extent="20mm" keep-together="always">
+        <fo:flow flow-name="xsl-region-body" extent="20mm">
 				<xsl:apply-templates select="examen"/>
         </fo:flow>
       </fo:page-sequence>
      </fo:root>
 </xsl:template>
 <xsl:template match="examen">
-
-		  <fo:block font-size="15pt" font-weight="bold" space-after="5mm"> <xsl:value-of select="titulo"/>
+		  <fo:block font-size="15pt" font-weight="bold" space-after="5mm" break-before="page"> <xsl:value-of select="titulo"/>
           </fo:block>
 		  <fo:block font-size="13pt" font-style="italic" space-after="5mm"><xsl:value-of select="subtitulo"/>
 		  </fo:block>
@@ -36,17 +35,8 @@
 		</fo:block>
   </xsl:template>
 	<xsl:template match="inciso">
-		<xsl:choose>
-			<xsl:when test="respuesta='si'">
-				<fo:block font-size="9pt" font-weight="bold" font-style="italic" space-after="3mm">
-					<xsl:value-of select="letra"/>.<xsl:value-of select="textoInciso"/>
-				</fo:block>
-			</xsl:when>
-			<xsl:otherwise>
-				<fo:block font-size="9pt" space-after="3mm">
-					<xsl:value-of select="letra"/>.<xsl:value-of select="textoInciso"/>
-				</fo:block>
-			</xsl:otherwise>
-		</xsl:choose>	
+		<fo:block font-size="9pt" space-after="3mm">
+			<xsl:value-of select="letra"/>.<xsl:value-of select="textoInciso"/>
+		</fo:block>
 	</xsl:template>
 </xsl:stylesheet>
