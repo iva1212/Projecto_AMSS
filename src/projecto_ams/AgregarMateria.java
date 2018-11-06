@@ -73,8 +73,7 @@ public class AgregarMateria {
         vbox.setStyle("-fx-background-color: #73A86F");
         
         btnAceptar.setOnAction(e-> {
-            ControladorBD.agrMateria(area.getText());
-            window.close();
+            Controlador_Botones.btnAgrMateria_AM(area);
         });//cambiar cuando se implemente la base de datos
         
        
@@ -83,4 +82,9 @@ public class AgregarMateria {
         window.setScene(scene);
         window.showAndWait();
     }
+
+    public static Stage getWindow() {
+        return window;
+    }
+    
 }

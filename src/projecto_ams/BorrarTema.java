@@ -76,13 +76,15 @@ public class BorrarTema {
         
         vbox.getChildren().addAll(r,hboxMateria,hboxTema,hboxButton);
         vbox.setStyle("-fx-background-color: #73A86F");
-        btnAceptar.setOnAction(e-> {
-            ControladorBD.deletTema(combo.getValue().toString(),combo2.getValue().toString());
-            window.close();
-        });//cambiar cuando se implemente la base de datos
+        btnAceptar.setOnAction(e->Controlador_Botones.btnDeletTema(combo, combo2));//cambiar cuando se implemente la base de datos
         Scene scene=new Scene(vbox);
         window.setResizable(false);
         window.setScene(scene);
         window.showAndWait();
     }
+
+    public static Stage getWindow() {
+        return window;
+    }
+    
 }

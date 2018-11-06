@@ -100,11 +100,7 @@ public class AgregarVariable {
         vboxPantalla.getChildren().addAll(r,hboxVariable,hboxRangos,hboxButton);
         vboxPantalla.setStyle("-fx-background-color: #73A86F");
         
-        btnAceptar.setOnAction(e-> {
-            Variable v=new Variable(nomVar,Integer.parseInt(areaRangoMin.getText()),Integer.parseInt(areaRangoMax.getText()));
-            ControladorBD.agrVariable(v);
-            window.close();
-        });//cambiar cuando se implemente la base de datos
+        btnAceptar.setOnAction(e->Controlador_Botones.btnAgrVariable_AV(nomVar));//cambiar cuando se implemente la base de datos
         
        
         Scene scene=new Scene(vboxPantalla);
@@ -112,4 +108,18 @@ public class AgregarVariable {
         window.setScene(scene);
         window.showAndWait();
     }
+
+    public static TextArea getAreaRangoMax() {
+        return areaRangoMax;
+    }
+
+    public static TextArea getAreaRangoMin() {
+        return areaRangoMin;
+    }
+
+    public static Stage getWindow() {
+        return window;
+    }
+     
+     
 }

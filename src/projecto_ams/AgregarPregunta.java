@@ -53,6 +53,9 @@ public class AgregarPregunta {
     private static HBox secPregunta;
     private static HBox masMenos;
     private static BorderPane borderPane;
+    private static Inciso abierta;
+    private static Inciso verdad;
+    private static Inciso falso;
     
     public static void display(ComboBox comboBox,ComboBox comboBox2,Pregunta pregunta){
         window= new Stage();
@@ -88,9 +91,9 @@ public class AgregarPregunta {
             comboBox.setValue(pregunta.getMateria());
             comboBox2.setValue(pregunta.getTema()); 
         }
-        Inciso abierta=new Inciso("Respuesta","",true); //cambiar si es posible
-        Inciso verdad=new Inciso("a","Verdadero",false); //cambiar si es posible
-        Inciso falso=new Inciso("b","Falso",false); //cambiar si es posible
+        abierta=new Inciso("Respuesta","",true); //cambiar si es posible
+        verdad=new Inciso("a","Verdadero",false); //cambiar si es posible
+        falso=new Inciso("b","Falso",false); //cambiar si es posible
         
         
         
@@ -155,102 +158,16 @@ public class AgregarPregunta {
         
         if(pregunta.getTipo()!=""){
             for(int i=0;i<pregunta.getI().size();i++){
-                        middle.getChildren().add(pregunta.getI().get(i).display());
+                middle.getChildren().add(pregunta.getI().get(i).display());
             }
             if("Opcion Multiple".equals(pregunta.getTipo())){
                 middle.getChildren().add(masMenos);
             }
         }
-        combo3.setOnAction(new EventHandler<ActionEvent>(){
-            @Override
-            public void handle(ActionEvent event) {
-                if(combo3.getValue()=="Opcion Multiple"){
-                    middle.getChildren().clear();
-                    middle.getChildren().add(secPregunta);
-                    if(pregunta.getTipo().equals("Abierta")){
-                        pregunta.getI().get(0).setLetra("a");
-                    }
-                    for(int i=0;i<pregunta.getI().size();i++){
-                        middle.getChildren().add(pregunta.getI().get(i).display());
-                    }
-                    middle.getChildren().add(masMenos);
-                }
-                else if(combo3.getValue().equals("Abierta")){
-                    middle.getChildren().clear();
-                    middle.getChildren().addAll(secPregunta,abierta.display());
-                }
-                else if(combo3.getValue().equals("V o F")){
-                    middle.getChildren().clear();
-                    middle.getChildren().addAll(secPregunta,verdad.display(),falso.display());
-                }
-            }
-                    
-         });
-        btnAgregar.setOnAction(e -> {
-            if(pregunta.getPreguntaID()==-1 || !combo3.getValue().equals(pregunta.getTipo())){
-                if(combo3.getValue().equals("Abierta")){
-                    pregunta.getI().clear();
-                    pregunta.getI().add(abierta);
-                }
-                else if(combo3.getValue().equals("V o F")){
-                    pregunta.getI().clear();
-                    pregunta.getI().add(verdad);
-                    pregunta.getI().add(falso);
-                }
-            }
-            for(int i=0;i<pregunta.getI().size();i++){
-                pregunta.getI().get(i).save();
-            }
-            pregunta.setPregunta(preg.getText());
-            
-            pregunta.setTipo(combo3.getValue().toString());
-            ControladorBD.deletPregunta(pregunta);
-            ControladorBD.agrPregunta(comboBox2.getValue().toString(), pregunta);
-            ControladorBD.agrInciso(pregunta.getI());
-            
-            for(int i=0;i<preg.getText().length();i++){
-                pregunta.getV().clear();
-                char c=preg.getText().charAt(i);
-                if(c=='#'){
-                    String sub=preg.getText().substring(i, i+2);
-                    variables.add(sub);
-                    i++;
-                }
-            }
-            while(!variables.isEmpty()){
-                AgregarVariable.display(pregunta,variables.get(0));
-                variables.remove(0);
-            }
-            window.close();
-            });
-        btnMas.setOnAction(e->{
-            for(int i=0;i<pregunta.getI().size();i++){
-                 pregunta.getI().get(i).save();
-             }
-             
-            Inciso in=new Inciso((char) (pregunta.getI().size()+'a'));
-            pregunta.getI().add(in);
- 
-            middle.getChildren().clear();
-            middle.getChildren().add(secPregunta);
-            for(int i=0;i<pregunta.getI().size();i++){
-                middle.getChildren().add(pregunta.getI().get(i).display());
-            }
-            middle.getChildren().add(masMenos);
-        });   
-        btnMenos.setOnAction(e ->{
-            for(int i=0;i<pregunta.getI().size();i++){
-                 pregunta.getI().get(i).save();
-             }
-            pregunta.getI().remove(pregunta.getI().size()-1);
-            
-            middle.getChildren().clear();
-            middle.getChildren().add(secPregunta);
-            for(int i=0;i<pregunta.getI().size();i++){
-                middle.getChildren().add(pregunta.getI().get(i).display());
-            }
-            middle.getChildren().add(masMenos);
-        });
+        combo3.setOnAction(e ->Controlador_ComboBox.comboTipo_AP(pregunta));
+        btnAgregar.setOnAction(e ->Controlador_Botones.btnAgrPregunta_AP(pregunta, comboBox2));
+        btnMas.setOnAction(e->Controlador_Botones.btnMas_AP(pregunta));   
+        btnMenos.setOnAction(e ->Controlador_Botones.btnMenos_AP(pregunta));
         
         
         borderPane.setStyle("-fx-background-color: #73A86F");
@@ -302,5 +219,61 @@ public class AgregarPregunta {
         window.showAndWait();
         
     }
-  
+
+    public static ComboBox getCombo3() {
+        return combo3;
+    }
+
+    public static TextArea getPreg() {
+        return preg;
+    }
+
+    public static VBox getMiddle() {
+        return middle;
+    }
+
+    public static HBox getSecPregunta() {
+        return secPregunta;
+    }
+
+    public static HBox getMasMenos() {
+        return masMenos;
+    }
+
+    public static Inciso getAbierta() {
+        return abierta;
+    }
+
+    public static void setPreg(TextArea preg) {
+        AgregarPregunta.preg = preg;
+    }
+
+    public static void setMiddle(VBox middle) {
+        AgregarPregunta.middle = middle;
+    }
+
+    public static void setMasMenos(HBox masMenos) {
+        AgregarPregunta.masMenos = masMenos;
+    }
+
+    public static Inciso getFalso() {
+        return falso;
+    }
+
+    public static Inciso getVerdad() {
+        return verdad;
+    }
+
+    public static Stage getWindow() {
+        return window;
+    }
+
+    public static List<String> getVariables() {
+        return variables;
+    }
+
+    public static void setVariables(List<String> variables) {
+        AgregarPregunta.variables = variables;
+    }
+    
 }

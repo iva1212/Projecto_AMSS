@@ -6,6 +6,7 @@
 package projecto_ams;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import javafx.scene.layout.HBox;
 
@@ -44,7 +45,9 @@ public class Pregunta {
         this.I=new ArrayList<>();
         this.V=new ArrayList<>();
     }
-
+    public void randomizeIncisos(){
+        Collections.shuffle(I);
+    }
     public String getMateria() {
         return materia;
     }
