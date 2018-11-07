@@ -50,7 +50,7 @@ public class AgregarTema {
         vboxPantalla=new VBox(40);
         
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Agregar Materia");
+        window.setTitle("Agregar Tema");
         window.setMinWidth(400);
         window.setMinHeight(200);
         

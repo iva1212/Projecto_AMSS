@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -44,7 +43,7 @@ public class BorrarTema {
         hboxButton=new HBox();
         vbox=new VBox(40);
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Agregar Materia");
+        window.setTitle("Borrar Tema");
         window.setMinWidth(400);
         window.setMinHeight(200);
         

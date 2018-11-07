@@ -8,7 +8,6 @@ package projecto_ams;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import javafx.scene.layout.HBox;
 
 /**
  *

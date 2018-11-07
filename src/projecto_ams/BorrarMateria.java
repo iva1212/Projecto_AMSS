@@ -10,7 +10,6 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
 import javafx.scene.layout.Region;
@@ -40,7 +39,7 @@ public class BorrarMateria {
         vboxPantalla=new VBox(40);
         
         window.initModality(Modality.APPLICATION_MODAL);
-        window.setTitle("Agregar Materia");
+        window.setTitle("Borrar Materia");
         window.setMinWidth(400);
         window.setMinHeight(200);
         

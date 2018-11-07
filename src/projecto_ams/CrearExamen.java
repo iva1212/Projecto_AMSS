@@ -7,8 +7,6 @@ package projecto_ams;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -135,15 +133,16 @@ public class CrearExamen {
         comboMateria.setOnAction(new EventHandler() {
             @Override
             public void handle(Event e) {
-                temas=ControladorBD.leerTemas(comboMateria.getValue().toString());
-                hboxTemas.clear();
-                resetTemas();
-                vboxMatTemas.getChildren().clear();
-                vboxMatTemas.getChildren().addAll(hboxTituloSub,hboxMateria,labelTemas);
-                for(int i=0;i<hboxTemas.size();i++){
-                    vboxMatTemas.getChildren().add(hboxTemas.get(i));
+                if(comboMateria.getValue()!=null){
+                    temas=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    hboxTemas.clear();
+                    resetTemas();
+                    vboxMatTemas.getChildren().clear();
+                    vboxMatTemas.getChildren().addAll(hboxTituloSub,hboxMateria,labelTemas);
+                    for(int i=0;i<hboxTemas.size();i++){
+                        vboxMatTemas.getChildren().add(hboxTemas.get(i));
+                    }
                 }
-                
             }
         });
         btnCrear.setOnAction(e ->{
@@ -155,6 +154,7 @@ public class CrearExamen {
                 numTemas.add(Integer.parseInt(num.getText().toString()));
             }
             CreaciondeExamen.CrearExamen(areaTitulo.getText().toString(),areaSubtitulo.getText().toString(),comboMateria.getValue().toString(),temas,numTemas,numeroExamenes);
+            AlertBox.display("Crear Examen", "Exmen Creado!");
             window.close();
         });
         

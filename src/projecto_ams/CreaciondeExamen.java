@@ -20,11 +20,7 @@ import java.util.logging.Logger;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.transform.Transformer;
-import javax.xml.transform.TransformerException;
-import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.dom.DOMSource;
-import javax.xml.transform.stream.StreamResult;
 
 
 
@@ -90,10 +86,12 @@ public class CreaciondeExamen {
         System.out.println("Se creo examen");
      }
      private static void crearXML(String titulo,String subtitulo,List<Pregunta>preg,int numExamenes){
+        String newTitulo= titulo.replace(" ","_");
+        String newSubtitulo=subtitulo.replace(" ","_");
          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
          Date date = new Date();  
          int contPreguntas=0;
-         xmlURL="C:\\Temp\\examen_"+titulo+"_"+subtitulo+".xml";
+         xmlURL="templates\\examen_"+newTitulo+"_"+newSubtitulo+".xml";
          try {
              DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
              DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -111,14 +109,22 @@ public class CreaciondeExamen {
                 Element sub=document.createElement("subtitulo");
                 sub.appendChild(document.createTextNode(subtitulo));
                 examen.appendChild(sub);
-
-                Element fecha=document.createElement("fecha");
-                fecha.appendChild(document.createTextNode(formatter.format(date)));
-                examen.appendChild(fecha);
-
+                
                 Element nombre=document.createElement("nombre");
-                nombre.appendChild(document.createTextNode("Nombre:_____________"));
+                nombre.appendChild(document.createTextNode("Nombre:_________________"));
                 examen.appendChild(nombre);
+                
+                Element fecha=document.createElement("fecha");
+                fecha.appendChild(document.createTextNode("Fecha:_________________"));
+                examen.appendChild(fecha);
+                
+                Element instructor=document.createElement("instructor");
+                instructor.appendChild(document.createTextNode("Profesor:_________________"));
+                examen.appendChild(instructor);
+                
+                Element matricula=document.createElement("matricula");
+                matricula.appendChild(document.createTextNode("Matricula:_________________"));
+                examen.appendChild(matricula);
 
                 for(int t=0;t<preg.size();t++){
                     Element pregunta = document.createElement("pregunta");
@@ -131,17 +137,21 @@ public class CreaciondeExamen {
                     Element textoPregunta = document.createElement("textoPregunta");
                     textoPregunta.appendChild(document.createTextNode(preg.get(t).getPregunta()));
                     pregunta.appendChild(textoPregunta);
-
+                    
+                    Element tipo = document.createElement("tipo");
+                    tipo.appendChild(document.createTextNode(preg.get(t).getTipo()));
+                    pregunta.appendChild(tipo);
+                    
                     System.out.println("El numero de preguntas es:"+preg.size());
                     System.out.println("El numero de incisos"+preg.get(t).getI().size());
 
                     for(int i=0;i<preg.get(t).getI().size();i++){
                         Element inciso=document.createElement("inciso");
                         pregunta.appendChild(inciso);
+                        
                         Element letra=document.createElement("letra");
                         letra.appendChild(document.createTextNode(""+((char)('a'+i))));
                         inciso.appendChild(letra);
-
                         Element textoInciso = document.createElement("textoInciso");
                         System.out.println(preg.get(t).getI().get(i).getInciso());
                         textoInciso.appendChild(document.createTextNode(preg.get(t).getI().get(i).getInciso()));
@@ -182,6 +192,8 @@ public class CreaciondeExamen {
         } 
      }
      private static void crearPDF(String titulo,String subtitulo,boolean isRespuesta) throws FileNotFoundException, TransformerConfigurationException, FOPException, TransformerException, IOException{
+        String newTitulo= titulo.replace(" ","_");
+        String newSubtitulo=subtitulo.replace(" ","_");
          // the XSL FO file
          SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");  
          Date date = new Date(); 
@@ -190,7 +202,7 @@ public class CreaciondeExamen {
             xsltFile = new File("templates\\template_R.xsl");
          }
          else{
-            xsltFile = new File("templates\\template _E.xsl");
+            xsltFile = new File("templates\\template_E.xsl");
          }
         // the XML file which provides the input
         StreamSource xmlSource = new StreamSource(new File(xmlURL));
@@ -201,10 +213,10 @@ public class CreaciondeExamen {
         // Setup output
         OutputStream out;
        if(isRespuesta){
-            out = new java.io.FileOutputStream("Examenes\\Respuestas_"+titulo+"_"+subtitulo+"_"+formatter.format(date)+".pdf");
+            out = new java.io.FileOutputStream("Examenes\\Respuestas_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
        }
        else{
-           out = new java.io.FileOutputStream("Examenes\\Examenes_"+titulo+"_"+subtitulo+"_"+formatter.format(date)+".pdf");
+           out = new java.io.FileOutputStream("Examenes\\Examenes_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
        }
     
         try {

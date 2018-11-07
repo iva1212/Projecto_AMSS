@@ -8,7 +8,6 @@ package projecto_ams;
 import java.util.ArrayList;
 import java.util.List;
 import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.layout.HBox;

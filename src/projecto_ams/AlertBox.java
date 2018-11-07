@@ -4,14 +4,11 @@
  * and open the template in the editor.
  */
 package projecto_ams;
-import javafx.application.Application;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
+
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
@@ -38,11 +35,18 @@ public class AlertBox {
         
         
         label.setText(message);
+        label.setStyle(Style.Montserrat_Light);
         closeButton.setText("Close");
+        closeButton.setStyle(Style.Lion);
+        
+        closeButton.setOnMouseEntered(e -> closeButton.setStyle(Style.Lion_default));
+        closeButton.setOnMouseExited(e -> closeButton.setStyle(Style.Lion));
+        
         closeButton.setOnAction(e -> window.close());
         
         layout.getChildren().addAll(label,closeButton);
         layout.setAlignment(Pos.CENTER);
+        layout.setStyle("-fx-background-color: #73A86F");
         
         Scene scene=new Scene(layout);
         window.setScene(scene);

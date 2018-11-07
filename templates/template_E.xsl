@@ -9,20 +9,22 @@
         </fo:simple-page-master>
       </fo:layout-master-set>
       <fo:page-sequence master-reference="simpleA4">
-        <fo:flow flow-name="xsl-region-body" extent="20mm">
+        <fo:flow flow-name="xsl-region-body" extent="20mm" font-family="Times New Roman Georgia">
 				<xsl:apply-templates select="examen"/>
         </fo:flow>
       </fo:page-sequence>
      </fo:root>
 </xsl:template>
 <xsl:template match="examen">
-		  <fo:block font-size="15pt" font-weight="bold" space-after="5mm" break-before="page"> <xsl:value-of select="titulo"/>
+		  <fo:block font-size="15pt" font-weight="bold" space-after="5mm" break-before="page" text-align="center"> <xsl:value-of select="titulo"/>
           </fo:block>
-		  <fo:block font-size="13pt" font-style="italic" space-after="5mm"><xsl:value-of select="subtitulo"/>
+		  <fo:block font-size="13pt" font-style="italic" space-after="5mm" text-align="center"><xsl:value-of select="subtitulo"/>
 		  </fo:block>
-          <fo:block font-size="13pt" space-after="5mm"><xsl:value-of select="fecha"/>
+		  <fo:block font-size="13pt" space-after="5mm" text-align="right"><xsl:value-of select="instructor"/> <xsl:value-of select="nombre"/>
 		  </fo:block>
-		  <fo:block font-size="13pt" space-after="5mm"><xsl:value-of select="nombre"/>
+		  <fo:block font-size="13pt" space-after="5mm" text-align="right"><xsl:value-of select="matricula"/>
+		  </fo:block>
+          <fo:block font-size="13pt" space-after="5mm" text-align="right"><xsl:value-of select="fecha"/>
 		  </fo:block>
 		  <fo:block space-after="5mm">
 			<xsl:apply-templates select="pregunta"/>
@@ -30,8 +32,16 @@
 </xsl:template>
 	<xsl:template match="pregunta">
 		<fo:block font-size="12pt" space-after="5mm">
-			<xsl:value-of select="numpregunta"/>.<xsl:value-of select="textoPregunta"/>
-			<xsl:apply-templates select="inciso"/>
+			<xsl:value-of select="numpregunta"/>.___ <xsl:value-of select="textoPregunta"/>
+			<xsl:choose>
+				<xsl:when test="tipo = 'Abierta'">
+					<fo:block white-space-collapse="false" white-space-treatment="preserve" 
+						font-size="0pt" line-height="40px">.</fo:block>
+					</xsl:when>
+				<xsl:otherwise>
+					<xsl:apply-templates select="inciso"/>
+				</xsl:otherwise>
+			</xsl:choose>
 		</fo:block>
   </xsl:template>
 	<xsl:template match="inciso">
@@ -39,4 +49,7 @@
 			<xsl:value-of select="letra"/>.<xsl:value-of select="textoInciso"/>
 		</fo:block>
 	</xsl:template>
+	<xsl:template match="br">
+      <xsl:value-of select="'&#x2028;'"/>
+   </xsl:template>
 </xsl:stylesheet>
