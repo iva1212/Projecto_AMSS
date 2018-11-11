@@ -59,5 +59,10 @@ public class Variable {
     public void setVarID(int varID) {
         this.varID = varID;
     }
-   
+   public void equals(Variable v){
+       this.variable=v.getVariable();
+       this.max=v.getMax();
+       this.min=v.getMin();
+       this.varID=v.getVarID(); 
+   }
 }

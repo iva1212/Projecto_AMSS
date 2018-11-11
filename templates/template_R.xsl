@@ -4,7 +4,7 @@
 <xsl:template match="crearExamen">
     <fo:root xmlns:fo="http://www.w3.org/1999/XSL/Format">
       <fo:layout-master-set>
-        <fo:simple-page-master master-name="simpleA4" page-height="29.7cm" page-width="21cm" margin-top="2cm" margin-bottom="2cm" margin-left="2cm" margin-right="2cm">
+        <fo:simple-page-master master-name="simpleA4" page-height="29.7cm" page-width="21cm" margin-top="1cm" margin-bottom="1cm" margin-left="1cm" margin-right="1cm">
           <fo:region-body/>
         </fo:simple-page-master>
       </fo:layout-master-set>
@@ -20,18 +20,22 @@
           </fo:block>
 		  <fo:block font-size="13pt" font-style="italic" space-after="5mm" text-align="center"><xsl:value-of select="subtitulo"/>
 		  </fo:block>
-		  <fo:block font-size="13pt" space-after="5mm" text-align="right"><xsl:value-of select="instructor"/> <xsl:value-of select="nombre"/>
+		  <fo:block font-size="13pt" space-after="4mm" text-align="right"><xsl:value-of select="instructor"/> <xsl:value-of select="nombre"/>
 		  </fo:block>
-		  <fo:block font-size="13pt" space-after="5mm" text-align="right"><xsl:value-of select="matricula"/>
+		  <fo:block font-size="13pt" space-after="4mm" text-align="right"> <xsl:value-of select="matricula"/>
 		  </fo:block>
-          <fo:block font-size="13pt" space-after="5mm" text-align="right"><xsl:value-of select="fecha"/>
+          <fo:block font-size="13pt" space-after="4mm" text-align="right"><xsl:value-of select="fecha"/>
 		  </fo:block>
-		  <fo:block space-after="5mm">
+		  <fo:block font-size="11pt" space-after="4mm" font-style="italic" ><xsl:value-of select="instruciones"/>
+		  </fo:block>
+		  <fo:block border-top-style="solid" font-size="0pt">.
+		  </fo:block>   
+		  <fo:block space-after="10mm">
 			<xsl:apply-templates select="pregunta"/>
 		  </fo:block>
 </xsl:template>
 	<xsl:template match="pregunta">
-		<fo:block font-size="12pt" space-after="5mm">
+		<fo:block font-size="12pt" space-after="7mm">
 			<xsl:value-of select="numpregunta"/>.<xsl:value-of select="textoPregunta"/>
 			<xsl:apply-templates select="inciso"/>
 		</fo:block>
@@ -39,12 +43,14 @@
 	<xsl:template match="inciso">
 		<xsl:choose>
 			<xsl:when test="respuesta='si'">
-				<fo:block font-size="9pt" font-weight="bold" font-style="italic" space-after="3mm">
+				<fo:block font-size="10pt" font-weight="bold" font-style="italic" space-after="3mm">
+					&#160; &#160; &#160; &#160; &#160; &#160;
 					<xsl:value-of select="letra"/>.<xsl:value-of select="textoInciso"/>
 				</fo:block>
 			</xsl:when>
 			<xsl:otherwise>
-				<fo:block font-size="9pt" space-after="3mm">
+				<fo:block font-size="10pt" space-after="3mm">
+					&#160; &#160; &#160; &#160; &#160; &#160;
 					<xsl:value-of select="letra"/>.<xsl:value-of select="textoInciso"/>
 				</fo:block>
 			</xsl:otherwise>

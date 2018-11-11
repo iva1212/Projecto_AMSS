@@ -7,6 +7,7 @@ package projecto_ams;
 
 import java.util.ArrayList;
 import java.util.List;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.event.EventHandler;
 import javafx.geometry.Pos;
@@ -34,18 +35,21 @@ public class CrearExamen {
     private static TextArea areaTitulo;
     private static TextArea areaSubtitulo;
     private static TextArea areaNumeroExamenes;
+    private static TextArea areaInstruciones;
     private static Label labelMateria;
     private static Label labelTemas;
     private static Label labelTitulo;
     private static Label labelSubtitulo;
     private static Label labelNumero;
+    private static Label labelInstruciones;
     private static ComboBox comboMateria;
     private static BorderPane borderPane;
     private static VBox vboxMatTemas;
     private static HBox hboxTitulo;
     private static HBox hboxSubtitulo;
     private static HBox hboxTituloSub;
-    private static HBox hboxMateria; 
+    private static HBox hboxMateria;
+    private static HBox hboxInstruciones;
     private static HBox hboxBtnCrear;
    
     
@@ -63,29 +67,33 @@ public class CrearExamen {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Crear Examen");
         window.setMinWidth(650);
-        window.setMinHeight(550);
+        window.setMinHeight(600);
         
         labelMateria=new Label("Materia:");
         labelTemas=new Label("Temas:");
         labelTitulo=new Label("Titulo:");
         labelSubtitulo=new Label("Subtitulo:");
         labelNumero=new Label("Num.Examenes:");
+        labelInstruciones=new Label ("Instruciones:");
         
         labelMateria.setStyle(Style.Montserrat_Light);
         labelTemas.setStyle(Style.Montserrat_Light);
         labelTitulo.setStyle(Style.Montserrat_Light);
         labelSubtitulo.setStyle(Style.Montserrat_Light);
         labelNumero.setStyle(Style.Montserrat_Light);
+        labelInstruciones.setStyle(Style.Montserrat_Light);
         
         btnCrear=new Button("Crear Examen");
         
         areaTitulo=new TextArea();
         areaSubtitulo=new TextArea();
         areaNumeroExamenes=new TextArea();
+        areaInstruciones=new TextArea();
         
         areaTitulo.setPrefSize(200, 20);
         areaSubtitulo.setPrefSize(200, 20);
         areaNumeroExamenes.setPrefSize(50,20);
+        areaInstruciones.setPrefSize(450, 80);
         
         btnCrear.setStyle(Style.Rich_Blue);
         
@@ -96,17 +104,21 @@ public class CrearExamen {
         hboxTitulo=new HBox(10);
         hboxSubtitulo=new HBox(10);
         hboxTituloSub=new HBox(10);
+        hboxInstruciones=new HBox(10);
         
         hboxMateria.getChildren().addAll(labelMateria,comboMateria,labelNumero,areaNumeroExamenes);
         hboxBtnCrear.getChildren().add(btnCrear);
+        
+        hboxInstruciones.getChildren().addAll(labelInstruciones,areaInstruciones);
         
         hboxTitulo.getChildren().addAll(labelTitulo,areaTitulo);
         hboxSubtitulo.getChildren().addAll(labelSubtitulo,areaSubtitulo);
         
         hboxTituloSub.getChildren().addAll(hboxTitulo,hboxSubtitulo);
         
-        vboxMatTemas.getChildren().addAll(hboxTituloSub,hboxMateria,labelTemas);
+        vboxMatTemas.getChildren().addAll(hboxTituloSub,hboxMateria,hboxInstruciones,labelTemas);
         hboxBtnCrear.setAlignment(Pos.TOP_RIGHT);
+        
         
         
         resetTemas();
@@ -145,17 +157,21 @@ public class CrearExamen {
                 }
             }
         });
-        btnCrear.setOnAction(e ->{
-            int numeroExamenes=Integer.parseInt(areaNumeroExamenes.getText());
-            numTemas.clear();
-            for(int i=0;i<hboxTemas.size();i++){
-                HBox op=hboxTemas.get(i);
-                Label num=(Label) op.getChildren().get(2);
-                numTemas.add(Integer.parseInt(num.getText().toString()));
+        btnCrear.setOnAction(new EventHandler<ActionEvent>() {
+            @Override
+            public void handle(ActionEvent e) {
+                CreaciondeExamen crear=new CreaciondeExamen();
+                int numeroExamenes=Integer.parseInt(areaNumeroExamenes.getText());
+                numTemas.clear();
+                for(int i=0;i<hboxTemas.size();i++){
+                    HBox op=hboxTemas.get(i);
+                    Label num=(Label) op.getChildren().get(2);
+                    numTemas.add(Integer.parseInt(num.getText().toString()));
+                }
+                crear.CrearExamen(areaTitulo.getText().toString(),areaSubtitulo.getText().toString(),areaInstruciones.getText().toString(),comboMateria.getValue().toString(),temas,numTemas,numeroExamenes);
+                AlertBox.display("Crear Examen", "Exmen Creado!");
+                window.close();
             }
-            CreaciondeExamen.CrearExamen(areaTitulo.getText().toString(),areaSubtitulo.getText().toString(),comboMateria.getValue().toString(),temas,numTemas,numeroExamenes);
-            AlertBox.display("Crear Examen", "Exmen Creado!");
-            window.close();
         });
         
         

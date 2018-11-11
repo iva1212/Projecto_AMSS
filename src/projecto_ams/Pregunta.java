@@ -110,6 +110,27 @@ public class Pregunta {
     public List<Variable> getV() {
         return V;
     }
-    
+    public void equals(Pregunta p){
+        this.pregunta=p.getPregunta();
+        this.materia=p.getMateria();
+        this.preguntaID=p.getPreguntaID();
+        this.tipo=p.getTipo();
+        this.I.clear();
+        for(int i=0;i<p.getI().size();i++){
+            Inciso in=new Inciso();
+            in.equals(p.getI().get(i));
+            this.I.add(in);
+        }
+        this.V.clear();
+        for(int i=0;i<p.getV().size();i++){
+            Variable v=new Variable();
+            v.equals(p.getV().get(i));
+            this.V.add(v);
+        }
+        this.tema=p.getTema();
+        this.numeroIncisos=p.getNumeroIncisos();
+
+        
+    }
     
 }

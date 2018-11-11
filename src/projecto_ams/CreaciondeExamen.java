@@ -14,8 +14,13 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Date;
 import java.util.List;
+import java.util.Random;
+import java.util.concurrent.ThreadLocalRandom;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.script.ScriptEngine;
+import javax.script.ScriptEngineManager;
+import javax.script.ScriptException;
 
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
@@ -47,11 +52,15 @@ import org.w3c.dom.Element;
  * @author ivann
  */
 public class CreaciondeExamen {
-    private static String xmlURL;
-     public static void CrearExamen(String titulo,String subtitulo,String materia,List<String> temas,List <Integer> nums,int numeroExamenes){
+    private  String xmlURL;
+    public CreaciondeExamen(){
+       this.xmlURL="";
+    }
+     public void CrearExamen(String titulo,String subtitulo,String instruciones,String materia,List<String> temas,List <Integer> nums,int numeroExamenes){
          List<Pregunta> preguntas=ControladorBD.leerPreguntas();
          for(int i=0;i<preguntas.size();i++){
              preguntas.get(i).setI(ControladorBD.leerIncisos(preguntas.get(i)));
+             preguntas.get(i).setV(ControladorBD.leerVariables(preguntas.get(i)));
          }
          
          Collections.shuffle(preguntas);
@@ -61,16 +70,20 @@ public class CreaciondeExamen {
             for(int j=0;j<preguntas.size();j++){
                 System.out.println(preguntas.get(j).getTema());
                 if(preguntas.get(j).getMateria().equals(materia) && preguntas.get(j).getTema().equals(temas.get(i).toString()) && nums.get(i)>0 ){
+                    if(!preguntas.get(j).getV().isEmpty()){
+                        System.out.println(preguntas.get(j).getV().get(0).getVariable());
+                    }
                     preg.add(preguntas.get(j));
                     nums.set(i, nums.get(i)-1);
                 }
             }
         }
         System.out.println(preg.get(0).getI().get(0).getInciso());
+        
         for(int i=0;i<preg.size();i++){
             preg.get(i).randomizeIncisos();
         }
-        crearXML(titulo,subtitulo,preg,numeroExamenes);
+        crearXML(titulo,subtitulo,instruciones,preg,numeroExamenes);
         try {
             crearPDF(titulo,subtitulo,false);
             crearPDF(titulo,subtitulo,true);
@@ -85,7 +98,7 @@ public class CreaciondeExamen {
         
         System.out.println("Se creo examen");
      }
-     private static void crearXML(String titulo,String subtitulo,List<Pregunta>preg,int numExamenes){
+     private void crearXML(String titulo,String subtitulo,String instruciones,List<Pregunta>preg,int numExamenes){
         String newTitulo= titulo.replace(" ","_");
         String newSubtitulo=subtitulo.replace(" ","_");
          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
@@ -125,8 +138,17 @@ public class CreaciondeExamen {
                 Element matricula=document.createElement("matricula");
                 matricula.appendChild(document.createTextNode("Matricula:_________________"));
                 examen.appendChild(matricula);
+                
+                Element instrucionesE=document.createElement("instruciones");
+                instrucionesE.appendChild(document.createTextNode(instruciones));
+                examen.appendChild(instrucionesE);
 
                 for(int t=0;t<preg.size();t++){
+                    
+                    Pregunta p=new Pregunta();
+                    p.equals(preg.get(t));
+                    p=cambiarVariables(p);
+                    
                     Element pregunta = document.createElement("pregunta");
                     examen.appendChild(pregunta);
 
@@ -135,17 +157,15 @@ public class CreaciondeExamen {
                     pregunta.appendChild(numpregunta);
 
                     Element textoPregunta = document.createElement("textoPregunta");
-                    textoPregunta.appendChild(document.createTextNode(preg.get(t).getPregunta()));
+                    textoPregunta.appendChild(document.createTextNode(p.getPregunta()));
                     pregunta.appendChild(textoPregunta);
                     
                     Element tipo = document.createElement("tipo");
-                    tipo.appendChild(document.createTextNode(preg.get(t).getTipo()));
+                    tipo.appendChild(document.createTextNode(p.getTipo()));
                     pregunta.appendChild(tipo);
                     
-                    System.out.println("El numero de preguntas es:"+preg.size());
-                    System.out.println("El numero de incisos"+preg.get(t).getI().size());
 
-                    for(int i=0;i<preg.get(t).getI().size();i++){
+                    for(int i=0;i<p.getI().size();i++){
                         Element inciso=document.createElement("inciso");
                         pregunta.appendChild(inciso);
                         
@@ -153,12 +173,13 @@ public class CreaciondeExamen {
                         letra.appendChild(document.createTextNode(""+((char)('a'+i))));
                         inciso.appendChild(letra);
                         Element textoInciso = document.createElement("textoInciso");
-                        System.out.println(preg.get(t).getI().get(i).getInciso());
-                        textoInciso.appendChild(document.createTextNode(preg.get(t).getI().get(i).getInciso()));
+                        System.out.println(p.getI().get(i).getInciso());
+                        
+                        textoInciso.appendChild(document.createTextNode(p.getI().get(i).getInciso()));
                         inciso.appendChild(textoInciso);
 
                         Element respuesta =document.createElement("respuesta");
-                        if(preg.get(t).getI().get(i).isCorrect()){
+                        if(p.getI().get(i).isCorrect()){
                            respuesta.appendChild(document.createTextNode("si"));
                         }
                         else{
@@ -191,7 +212,7 @@ public class CreaciondeExamen {
             tfe.printStackTrace();
         } 
      }
-     private static void crearPDF(String titulo,String subtitulo,boolean isRespuesta) throws FileNotFoundException, TransformerConfigurationException, FOPException, TransformerException, IOException{
+     private void crearPDF(String titulo,String subtitulo,boolean isRespuesta) throws FileNotFoundException, TransformerConfigurationException, FOPException, TransformerException, IOException{
         String newTitulo= titulo.replace(" ","_");
         String newSubtitulo=subtitulo.replace(" ","_");
          // the XSL FO file
@@ -241,6 +262,83 @@ public class CreaciondeExamen {
          
          
          
+     }
+     private Pregunta cambiarVariables(Pregunta pregunta){
+         Pregunta preg=pregunta;
+         String test=preg.getPregunta();
+         Random rand = new Random(); 
+         for(int i=0;i<preg.getV().size();i++){
+             String var=preg.getV().get(i).getVariable();
+             int min=preg.getV().get(i).getMin();
+             int max=preg.getV().get(i).getMax();
+             int randomNum=rand.nextInt((max - min) + 1) + min;
+             
+             System.out.println(randomNum);
+             test = test.replace(var,Integer.toString(randomNum));
+             System.out.println(test);
+             for(int j=0;j<preg.getI().size();j++){
+                 String inci=preg.getI().get(j).getInciso();
+                 inci=inci.replace(var,Integer.toString(randomNum));
+                 preg.getI().get(j).setInciso(inci);
+             }
+         }
+         preg.setPregunta(test);
+         
+         System.out.println(preg.getPregunta());
+         
+         List <String> formulas=new ArrayList<>();
+         formulas=hacerFormulas(preg.getPregunta());
+         preg.setPregunta(remplazarFormulas(formulas,preg.getPregunta()));
+         for(int i=0;i<preg.getI().size();i++){
+             formulas=hacerFormulas(preg.getI().get(i).getInciso());
+             preg.getI().get(i).setInciso(remplazarFormulas(formulas,preg.getI().get(i).getInciso()));
+             
+         }
+         
+         
+         return preg;
+         
+     }
+     private List<String> hacerFormulas(String s){
+         boolean formula=false;
+         List <String> formulas=new ArrayList<>();
+         int numFor=0;
+         String placeholder="";
+         for(int i=0;i<s.length();i++){
+                char c=s.charAt(i);
+                if(c=='['){
+                   formula=true;
+                }
+                else if(c==']'){
+                    formula=false;
+                    formulas.add(placeholder);
+                    numFor++;
+                    placeholder="";
+                }
+                else if(formula){
+                    placeholder+=c;
+                }
+            }
+         
+         return formulas;
+         
+     }
+     private String remplazarFormulas(List<String> formulas,String texto){
+         ScriptEngineManager mgr = new ScriptEngineManager();
+         ScriptEngine engine = mgr.getEngineByName("JavaScript");
+         String text=texto;
+         for(int i=0;i<formulas.size();i++){
+             try {
+                 Object result=engine.eval(formulas.get(i));
+                 System.out.println(result.toString());
+                 text=text.replace("["+formulas.get(i)+"]",result.toString());
+                 
+             } catch (ScriptException ex) {
+                 Logger.getLogger(CreaciondeExamen.class.getName()).log(Level.SEVERE, null, ex);
+             }
+             
+         }
+         return text;
      }
 }
 

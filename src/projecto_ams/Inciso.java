@@ -85,5 +85,21 @@ public class Inciso {
     public void setCorrect(boolean correct) {
         this.correct = correct;
     }
+
+    public CheckBox getC() {
+        return c;
+    }
+
+    public TextArea getI() {
+        return i;
+    }
     
+    public void equals(Inciso i){
+        this.inciso=i.getInciso();
+        this.correct=i.isCorrect();
+        this.letra=i.getLetra();
+        this.c=i.getC();
+        this.i=i.getI();
+        
+    }
 }
