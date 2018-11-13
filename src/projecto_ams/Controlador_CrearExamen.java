@@ -51,9 +51,9 @@ import org.w3c.dom.Element;
  *
  * @author ivann
  */
-public class CreaciondeExamen {
+public class Controlador_CrearExamen {
     private  String xmlURL;
-    public CreaciondeExamen(){
+    public Controlador_CrearExamen(){
        this.xmlURL="";
     }
      public void CrearExamen(String titulo,String subtitulo,String instruciones,String materia,List<String> temas,List <Integer> nums,int numeroExamenes){
@@ -85,11 +85,11 @@ public class CreaciondeExamen {
             crearPDF(titulo,subtitulo,false);
             crearPDF(titulo,subtitulo,true);
         } catch (FOPException ex) {
-            Logger.getLogger(CreaciondeExamen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controlador_CrearExamen.class.getName()).log(Level.SEVERE, null, ex);
         } catch (TransformerException ex) {
-            Logger.getLogger(CreaciondeExamen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controlador_CrearExamen.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
-            Logger.getLogger(CreaciondeExamen.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(Controlador_CrearExamen.class.getName()).log(Level.SEVERE, null, ex);
         }
         
         
@@ -334,7 +334,7 @@ public class CreaciondeExamen {
                  text=text.replace("["+formulas.get(i)+"]",result.toString());
                  
              } catch (ScriptException ex) {
-                 Logger.getLogger(CreaciondeExamen.class.getName()).log(Level.SEVERE, null, ex);
+                 Logger.getLogger(Controlador_CrearExamen.class.getName()).log(Level.SEVERE, null, ex);
              }
              
          }

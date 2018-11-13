@@ -160,7 +160,7 @@ public class CrearExamen {
         btnCrear.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                CreaciondeExamen crear=new CreaciondeExamen();
+                Controlador_CrearExamen crear=new Controlador_CrearExamen();
                 int numeroExamenes=Integer.parseInt(areaNumeroExamenes.getText());
                 numTemas.clear();
                 for(int i=0;i<hboxTemas.size();i++){
@@ -211,9 +211,6 @@ public class CrearExamen {
             hboxTemas.add(op);
             
         }
-        
-        
-        
         
         
     }
