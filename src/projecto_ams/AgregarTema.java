@@ -84,7 +84,7 @@ public class AgregarTema {
         vboxPantalla.getChildren().addAll(r,hbox,middle,bottom);
         vboxPantalla.setStyle("-fx-background-color: #73A86F");
         
-        btnAceptar.setOnAction(e-> Controlador_Botones.btnAgrTema_AT(combo));//cambiar cuando se implemente la base de datos
+        btnAceptar.setOnAction(e-> Controlador_AgregarTema.btnAgrTema_AT(combo));//cambiar cuando se implemente la base de datos
         Scene scene=new Scene(vboxPantalla);
         window.setResizable(false);
         window.setScene(scene);

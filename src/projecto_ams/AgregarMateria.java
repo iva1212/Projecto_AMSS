@@ -72,7 +72,7 @@ public class AgregarMateria {
         vbox.setStyle("-fx-background-color: #73A86F");
         
         btnAceptar.setOnAction(e-> {
-            Controlador_Botones.btnAgrMateria_AM(area);
+            Controlador_AgregarMateria.btnAgrMateria_AM(area);
         });
         
        

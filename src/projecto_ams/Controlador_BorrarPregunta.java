@@ -13,10 +13,10 @@ import javafx.scene.control.TableCell;
  * @author ivann
  * @param <T>
  */
-public class BorrarPregunta<T> extends TableCell<T, Void>  {
+public class Controlador_BorrarPregunta<T> extends TableCell<T, Void>  {
     private final Hyperlink link;
     private final ConfirmBox confirm;
-    public BorrarPregunta() {
+    public Controlador_BorrarPregunta() {
         link = new Hyperlink("Borrar");
         confirm= new ConfirmBox();
         link.setOnAction(evt -> {

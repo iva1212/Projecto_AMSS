@@ -159,10 +159,10 @@ public class AgregarPregunta {
                 middle.getChildren().add(masMenos);
             }
         }
-        combo3.setOnAction(e ->Controlador_ComboBox.comboTipo_AP(pregunta));
-        btnAgregar.setOnAction(e ->Controlador_Botones.btnAgrPregunta_AP(pregunta, comboBox2));
-        btnMas.setOnAction(e->Controlador_Botones.btnMas_AP(pregunta));   
-        btnMenos.setOnAction(e ->Controlador_Botones.btnMenos_AP(pregunta));
+        combo3.setOnAction(e ->Controlador_AgregarPregunta.comboTipo_AP(pregunta));
+        btnAgregar.setOnAction(e ->Controlador_AgregarPregunta.btnAgrPregunta_AP(pregunta, comboBox2));
+        btnMas.setOnAction(e->Controlador_AgregarPregunta.btnMas_AP(pregunta));   
+        btnMenos.setOnAction(e ->Controlador_AgregarPregunta.btnMenos_AP(pregunta));
         
         
         borderPane.setStyle("-fx-background-color: #73A86F");

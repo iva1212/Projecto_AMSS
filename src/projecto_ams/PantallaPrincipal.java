@@ -87,8 +87,8 @@ public class PantallaPrincipal extends Application {
         tabla=new VBox(20);
         borderPane=new BorderPane();
         //consiguiendo informacion de la base de datos
-        preguntas=Controlador_Tablas.getPreguntas();
-        materias=Controlador_ComboBox.getMaterias();
+        preguntas=Controlador_PantallaPrincipal.getPreguntas();
+        materias=Controlador_PantallaPrincipal.getMaterias();
         
         //Agregando informacion al ComboBox de Materia
         for(int i=0;i<materias.size();i++){
@@ -149,7 +149,7 @@ public class PantallaPrincipal extends Application {
         TipoCol.setCellValueFactory(
                 new PropertyValueFactory<Pregunta,String>("tipo")
         );
-        ElimCol.setCellFactory(tc -> new BorrarPregunta<>());
+        ElimCol.setCellFactory(tc -> new Controlador_BorrarPregunta<>());
         
         MateriaCol.setPrefWidth(175);
         TemaCol.setPrefWidth(175);
@@ -191,7 +191,7 @@ public class PantallaPrincipal extends Application {
         tablaPreguntas.setRowFactory(event-> {TableRow<Pregunta> rowPregunta=new TableRow<>();
         rowPregunta.setOnMouseClicked(e-> {
             if (e.getClickCount() == 2 && (! rowPregunta.isEmpty()) ){
-                Controlador_Tablas.modPregunta_PP(rowPregunta);
+                Controlador_PantallaPrincipal.modPregunta_PP(rowPregunta);
             } 
         }); return rowPregunta;
 });
@@ -199,38 +199,38 @@ public class PantallaPrincipal extends Application {
         
         //Action of comboBoxes
         comboMateria.setOnAction(e->{
-            Controlador_ComboBox.comboMateria_PP();
+            Controlador_PantallaPrincipal.comboMateria_PP();
         });
         comboTema.setOnAction(e->{
-            Controlador_ComboBox.comboTema_PP();
+            Controlador_PantallaPrincipal.comboTema_PP();
         });
         //Actions of buttons
         addPregunta.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                Controlador_Botones.btnAgrPregunta_PP();
+                Controlador_PantallaPrincipal.btnAgrPregunta_PP();
             }
         });
         addMateria.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                Controlador_Botones.btnAgrMateria_PP();
+                Controlador_PantallaPrincipal.btnAgrMateria_PP();
             }
         });
         addTema.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
-                Controlador_Botones.btnAgrTema_PP();
+                Controlador_PantallaPrincipal.btnAgrTema_PP();
             }
         });
         deletMateria.setOnAction(e ->{
-            Controlador_Botones.btnDeletMateria_PP();
+            Controlador_PantallaPrincipal.btnDeletMateria_PP();
         });
         deletTema.setOnAction(e->{
-            Controlador_Botones.btnDeletTema_PP();
+            Controlador_PantallaPrincipal.btnDeletTema_PP();
         });
         crearExamen.setOnAction(e ->{
-            Controlador_Botones.btnCrearExamen_PP();
+            Controlador_PantallaPrincipal.btnCrearExamen_PP();
         });
         
         //Adding the layout to the scene

@@ -66,7 +66,7 @@ public class BorrarMateria {
         vboxPantalla.getChildren().addAll(r,hboxMateria,hboxTema);
         vboxPantalla.setStyle("-fx-background-color: #73A86F");
         Scene scene=new Scene(vboxPantalla);
-        btnAceptar.setOnAction(e->Controlador_Botones.btnDeletMateria_BM(combo));//cambiar cuando se implemente la base de datos
+        btnAceptar.setOnAction(e->Controlador_BorrarMateria.btnDeletMateria_BM(combo));//cambiar cuando se implemente la base de datos
         window.setResizable(false);
         window.setScene(scene);
         window.showAndWait();

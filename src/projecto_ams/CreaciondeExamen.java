@@ -98,10 +98,12 @@ public class CreaciondeExamen {
      private void crearXML(String titulo,String subtitulo,String instruciones,List<Pregunta>preg,int numExamenes){
         String newTitulo= titulo.replace(" ","_");
         String newSubtitulo=subtitulo.replace(" ","_");
+        String workingDir=System.getProperty("user.dir");
          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
          Date date = new Date();  
          int contPreguntas=0;
-         xmlURL="templates\\examen_"+newTitulo+"_"+newSubtitulo+".xml";
+         xmlURL=workingDir+"\\templates\\examen_"+newTitulo+"_"+newSubtitulo+".xml";
+         System.out.println(xmlURL);
          try {
              DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
              DocumentBuilder documentBuilder = documentFactory.newDocumentBuilder();
@@ -212,15 +214,16 @@ public class CreaciondeExamen {
      private void crearPDF(String titulo,String subtitulo,boolean isRespuesta) throws FileNotFoundException, TransformerConfigurationException, FOPException, TransformerException, IOException{
         String newTitulo= titulo.replace(" ","_");
         String newSubtitulo=subtitulo.replace(" ","_");
+        String workingDir=System.getProperty("user.dir");
          // the XSL FO file
          SimpleDateFormat formatter = new SimpleDateFormat("ddMMyyyy");  
          Date date = new Date(); 
          File xsltFile;
          if(isRespuesta){
-            xsltFile = new File("templates\\template_R.xsl");
+            xsltFile = new File(workingDir+"\\templates\\template_R.xsl");
          }
          else{
-            xsltFile = new File("templates\\template_E.xsl");
+            xsltFile = new File(workingDir+"\\templates\\template_E.xsl");
          }
         // the XML file which provides the input
         StreamSource xmlSource = new StreamSource(new File(xmlURL));
@@ -231,10 +234,10 @@ public class CreaciondeExamen {
         // Setup output
         OutputStream out;
        if(isRespuesta){
-            out = new java.io.FileOutputStream("Examenes\\Respuestas_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
+            out = new java.io.FileOutputStream(workingDir+"\\Examenes\\Respuestas_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
        }
        else{
-           out = new java.io.FileOutputStream("Examenes\\Examenes_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
+           out = new java.io.FileOutputStream(workingDir+"\\Examenes\\Examenes_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
        }
     
         try {

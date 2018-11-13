@@ -100,7 +100,7 @@ public class AgregarVariable {
         vboxPantalla.getChildren().addAll(r,hboxVariable,hboxRangos,hboxButton);
         vboxPantalla.setStyle("-fx-background-color: #73A86F");
         
-        btnAceptar.setOnAction(e->Controlador_Botones.btnAgrVariable_AV(nomVar));//cambiar cuando se implemente la base de datos
+        btnAceptar.setOnAction(e->Controlador_AgregarVariable.btnAgrVariable_AV(nomVar));//cambiar cuando se implemente la base de datos
         
        
         Scene scene=new Scene(vboxPantalla);
