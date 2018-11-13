@@ -57,10 +57,10 @@ public class CreaciondeExamen {
        this.xmlURL="";
     }
      public void CrearExamen(String titulo,String subtitulo,String instruciones,String materia,List<String> temas,List <Integer> nums,int numeroExamenes){
-         List<Pregunta> preguntas=ControladorBD.leerPreguntas();
+         List<Pregunta> preguntas=ControladorBD_Pregunta.leerPreguntas();
          for(int i=0;i<preguntas.size();i++){
-             preguntas.get(i).setI(ControladorBD.leerIncisos(preguntas.get(i)));
-             preguntas.get(i).setV(ControladorBD.leerVariables(preguntas.get(i)));
+             preguntas.get(i).setI(ControladorBD_Inciso.leerIncisos(preguntas.get(i)));
+             preguntas.get(i).setV(ControladorBD_Variable.leerVariables(preguntas.get(i)));
          }
          
          Collections.shuffle(preguntas);
@@ -69,10 +69,7 @@ public class CreaciondeExamen {
         for(int i=0;i<temas.size();i++){
             for(int j=0;j<preguntas.size();j++){
                 System.out.println(preguntas.get(j).getTema());
-                if(preguntas.get(j).getMateria().equals(materia) && preguntas.get(j).getTema().equals(temas.get(i).toString()) && nums.get(i)>0 ){
-                    if(!preguntas.get(j).getV().isEmpty()){
-                        System.out.println(preguntas.get(j).getV().get(0).getVariable());
-                    }
+                if(preguntas.get(j).getMateria().equals(materia) && preguntas.get(j).getTema().equals(temas.get(i)) && nums.get(i)>0 ){
                     preg.add(preguntas.get(j));
                     nums.set(i, nums.get(i)-1);
                 }

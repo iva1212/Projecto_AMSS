@@ -21,11 +21,11 @@ public class Controlador_Tablas {
         ComboBox comboTema=PantallaPrincipal.getComboTema();
         TableView tablaPreguntas=PantallaPrincipal.getTablaPreguntas();
                 System.out.println(preg.getPreguntaID());
-                preg.setI(ControladorBD.leerIncisos(preg));
-                preg.setV(ControladorBD.leerVariables(preg));
+                preg.setI(ControladorBD_Inciso.leerIncisos(preg));
+                preg.setV(ControladorBD_Variable.leerVariables(preg));
                 AgregarPregunta.display(comboMateria,comboTema,preg);
                 PantallaPrincipal.refresh();
-                List<Pregunta> pregu=ControladorBD.leerPreguntas();
+                List<Pregunta> pregu=ControladorBD_Pregunta.leerPreguntas();
                 tablaPreguntas.getItems().clear();
                 for(int i=0;i<pregu.size();i++){
                     tablaPreguntas.getItems().add(pregu.get(i));
@@ -35,6 +35,6 @@ public class Controlador_Tablas {
         PantallaPrincipal.setTablaPreguntas(tablaPreguntas);
     }
     public static List<Pregunta> getPreguntas(){
-        return ControladorBD.leerPreguntas();
+        return ControladorBD_Pregunta.leerPreguntas();
     }
 }

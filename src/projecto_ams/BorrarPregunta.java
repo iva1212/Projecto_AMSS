@@ -22,7 +22,7 @@ public class BorrarPregunta<T> extends TableCell<T, Void>  {
         link.setOnAction(evt -> {
             // remove row item from tableview
             if(confirm.display("Borrar Pregunta","Seguro que quiere borrar esta pregunta?")){
-                ControladorBD.deletPregunta((Pregunta) getTableRow().getItem());
+                ControladorBD_Pregunta.deletPregunta((Pregunta) getTableRow().getItem());
                 getTableView().getItems().remove(getTableRow().getIndex());
                 
             }

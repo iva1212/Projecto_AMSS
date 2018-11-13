@@ -63,7 +63,7 @@ public class CrearExamen {
         temas=new ArrayList<>();
         numTemas=new ArrayList<>();
         hboxTemas=new ArrayList<>();
-        temas=ControladorBD.leerTemas(comboBox.getValue().toString());
+        temas=ControladorBD_Tema.leerTemas(comboBox.getValue().toString());
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Crear Examen");
         window.setMinWidth(650);
@@ -146,7 +146,7 @@ public class CrearExamen {
             @Override
             public void handle(Event e) {
                 if(comboMateria.getValue()!=null){
-                    temas=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    temas=ControladorBD_Tema.leerTemas(comboMateria.getValue().toString());
                     hboxTemas.clear();
                     resetTemas();
                     vboxMatTemas.getChildren().clear();

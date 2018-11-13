@@ -19,7 +19,7 @@ import javafx.stage.Modality;
 import javafx.stage.Stage;
 
 /**
- *
+ *La pantalla donde se agregan las materias a la BD.
  * @author ivann
  */
 public class AgregarMateria {
@@ -73,7 +73,7 @@ public class AgregarMateria {
         
         btnAceptar.setOnAction(e-> {
             Controlador_Botones.btnAgrMateria_AM(area);
-        });//cambiar cuando se implemente la base de datos
+        });
         
        
         Scene scene=new Scene(vbox);

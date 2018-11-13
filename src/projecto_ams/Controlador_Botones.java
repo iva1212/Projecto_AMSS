@@ -27,7 +27,7 @@ public class Controlador_Botones {
             AgregarPregunta.display(comboMateria,comboTema,preg);
             PantallaPrincipal.refresh();
             //table.getItems().clear();
-            List<Pregunta> pregu=ControladorBD.leerPreguntas();
+            List<Pregunta> pregu=ControladorBD_Pregunta.leerPreguntas();
             tablaPreguntas.getItems().clear();
             for(int i=0;i<pregu.size();i++){
                 if(pregu.get(i).getMateria().equals(comboMateria.getValue().toString()) && pregu.get(i).getTema().equals(comboTema.getValue().toString()) ){
@@ -63,9 +63,9 @@ public class Controlador_Botones {
             pregunta.setPregunta(preg.getText());
             
             pregunta.setTipo(combo3.getValue().toString());
-            ControladorBD.deletPregunta(pregunta);
-            ControladorBD.agrPregunta(comboBox2.getValue().toString(), pregunta);
-            ControladorBD.agrInciso(pregunta.getI());
+            ControladorBD_Pregunta.deletPregunta(pregunta);
+            ControladorBD_Pregunta.agrPregunta(comboBox2.getValue().toString(), pregunta);
+            ControladorBD_Inciso.agrInciso(pregunta.getI());
             
             for(int i=0;i<preg.getText().length();i++){
                 pregunta.getV().clear();
@@ -90,7 +90,7 @@ public class Controlador_Botones {
         TableView tablaPreguntas=PantallaPrincipal.getTablaPreguntas();
         AgregarMateria.display();
         List<String> op =new ArrayList<>();
-        op=ControladorBD.leerMaterias();
+        op=ControladorBD_Materia.leerMaterias();
         comboMateria.getItems().clear();
         for(int i=0;i<op.size();i++){
             comboMateria.getItems().add(op.get(i));
@@ -101,7 +101,7 @@ public class Controlador_Botones {
 
     }
     public static void btnAgrMateria_AM(TextArea a){
-        ControladorBD.agrMateria(a.getText());
+        ControladorBD_Materia.agrMateria(a.getText());
         AgregarMateria.getWindow().close();
     }
      public static void btnAgrTema_PP(){
@@ -111,7 +111,7 @@ public class Controlador_Botones {
          AgregarTema.display(comboMateria);
                 List<String> op =new ArrayList<>();
                 if(!comboMateria.getSelectionModel().isEmpty()){
-                    op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    op=ControladorBD_Tema.leerTemas(comboMateria.getValue().toString());
                     comboTema.getItems().clear();
                     for(int i=0;i<op.size();i++){
                         comboTema.getItems().add(op.get(i));
@@ -127,7 +127,7 @@ public class Controlador_Botones {
          Stage window=AgregarTema.getWindow();
          TextArea areaTema=AgregarTema.getAreaTema();
          System.out.println(combo.getValue());
-            ControladorBD.agrTema(combo.getValue().toString(),areaTema.getText());
+            ControladorBD_Tema.agrTema(combo.getValue().toString(),areaTema.getText());
             window.close();
          
      }
@@ -136,7 +136,7 @@ public class Controlador_Botones {
          TextArea areaRangoMin=AgregarVariable.getAreaRangoMin();
          TextArea areaRangoMax=AgregarVariable.getAreaRangoMax();
           Variable v=new Variable(nomVar,Integer.parseInt(areaRangoMin.getText()),Integer.parseInt(areaRangoMax.getText()));
-          ControladorBD.agrVariable(v);
+          ControladorBD_Variable.agrVariable(v);
           window.close();
      }
      public static void btnDeletMateria_PP(){
@@ -145,19 +145,19 @@ public class Controlador_Botones {
         TableView tablaPreguntas=PantallaPrincipal.getTablaPreguntas();
           BorrarMateria.display(comboMateria);
             List<String> op =new ArrayList<>();
-                op=ControladorBD.leerMaterias();
+                op=ControladorBD_Materia.leerMaterias();
                 comboMateria.getItems().clear();
                 for(int i=0;i<op.size();i++){
                     comboMateria.getItems().add(op.get(i));
                  } 
             if(!comboMateria.getSelectionModel().isEmpty()){
-                    op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    op=ControladorBD_Tema.leerTemas(comboMateria.getValue().toString());
                     comboTema.getItems().clear();
                     for(int i=0;i<op.size();i++){
                         comboTema.getItems().add(op.get(i));
                     }
                 }
-            List<Pregunta> pregu=ControladorBD.leerPreguntas();
+            List<Pregunta> pregu=ControladorBD_Pregunta.leerPreguntas();
             tablaPreguntas.getItems().clear();
             for(int i=0;i<pregu.size();i++){
             tablaPreguntas.getItems().add(pregu.get(i));
@@ -170,7 +170,7 @@ public class Controlador_Botones {
      }
      public static void btnDeletMateria_BM(ComboBox combo){
          Stage window=BorrarMateria.getWindow();
-         ControladorBD.deletMateria((String) combo.getValue());
+         ControladorBD_Materia.deletMateria((String) combo.getValue());
          window.close();
      }
      public static void btnDeletTema_PP(){
@@ -180,13 +180,13 @@ public class Controlador_Botones {
          BorrarTema.display(comboMateria, comboTema);
             List<String> op =new ArrayList<>();
                 if(!comboMateria.getSelectionModel().isEmpty()){
-                    op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+                    op=ControladorBD_Tema.leerTemas(comboMateria.getValue().toString());
                     comboTema.getItems().clear();
                     for(int i=0;i<op.size();i++){
                         comboTema.getItems().add(op.get(i));
                     }
                 }
-             List<Pregunta> pregu=ControladorBD.leerPreguntas();
+             List<Pregunta> pregu=ControladorBD_Pregunta.leerPreguntas();
             tablaPreguntas.getItems().clear();
             for(int i=0;i<pregu.size();i++){
             tablaPreguntas.getItems().add(pregu.get(i));
@@ -198,7 +198,7 @@ public class Controlador_Botones {
      }
      public static void btnDeletTema(ComboBox combo,ComboBox combo2){
          Stage window=BorrarTema.getWindow();
-          ControladorBD.deletTema(combo.getValue().toString(),combo2.getValue().toString());
+          ControladorBD_Tema.deletTema(combo.getValue().toString(),combo2.getValue().toString());
             window.close();
 
      }

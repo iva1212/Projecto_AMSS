@@ -18,7 +18,7 @@ import javafx.scene.layout.VBox;
  */
 public class Controlador_ComboBox {
     public static List<String> getMaterias(){
-        return ControladorBD.leerMaterias();
+        return ControladorBD_Materia.leerMaterias();
         
     }
      public static void comboMateria_PP(){
@@ -26,13 +26,13 @@ public class Controlador_ComboBox {
         ComboBox comboTema=PantallaPrincipal.getComboTema();
         TableView tablaPreguntas=PantallaPrincipal.getTablaPreguntas();
         List<String> op =new ArrayList<>();
-            op=ControladorBD.leerTemas(comboMateria.getValue().toString());
+            op=ControladorBD_Tema.leerTemas(comboMateria.getValue().toString());
             comboTema.getItems().clear();
             for(int i=0;i<op.size();i++){
                 comboTema.getItems().add(op.get(i));
             }
             List<Pregunta> op2 =new ArrayList<>();
-            op2=ControladorBD.leerPreguntas();
+            op2=ControladorBD_Pregunta.leerPreguntas();
             tablaPreguntas.getItems().clear();
             for(int i=0;i<op2.size();i++){
                 if(op2.get(i).getMateria().equals(comboMateria.getValue().toString())){
@@ -49,7 +49,7 @@ public class Controlador_ComboBox {
         ComboBox comboTema=PantallaPrincipal.getComboTema();
         TableView tablaPreguntas=PantallaPrincipal.getTablaPreguntas();
         List<Pregunta> op =new ArrayList<>();
-            op=ControladorBD.leerPreguntas();
+            op=ControladorBD_Pregunta.leerPreguntas();
             tablaPreguntas.getItems().clear();
             for(int i=0;i<op.size();i++){
                 if(op.get(i).getMateria().equals(comboMateria.getValue().toString()) && op.get(i).getTema().equals(comboTema.getValue().toString()) ){
