@@ -54,8 +54,8 @@ public class BorrarMateria {
         
         
         hboxTema.setAlignment(Pos.BOTTOM_RIGHT);
-        hboxMateria.setStyle("-fx-background-color: #73A86F");
-        hboxTema.setStyle("-fx-background-color: #73A86F");
+        hboxMateria.setStyle("-fx-background-color: #FBF7E9");
+        hboxTema.setStyle("-fx-background-color: #FBF7E9");
         hboxMateria.getChildren().addAll(labelBorrarMat,combo);
         hboxTema.getChildren().add(btnAceptar);
         
@@ -64,7 +64,7 @@ public class BorrarMateria {
         
         
         vboxPantalla.getChildren().addAll(r,hboxMateria,hboxTema);
-        vboxPantalla.setStyle("-fx-background-color: #73A86F");
+        vboxPantalla.setStyle("-fx-background-color: #FBF7E9");
         Scene scene=new Scene(vboxPantalla);
         btnAceptar.setOnAction(e->Controlador_BorrarMateria.btnDeletMateria_BM(combo));//cambiar cuando se implemente la base de datos
         window.setResizable(false);

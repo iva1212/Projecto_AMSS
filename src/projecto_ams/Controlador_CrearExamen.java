@@ -102,7 +102,7 @@ public class Controlador_CrearExamen {
          SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");  
          Date date = new Date();  
          int contPreguntas=0;
-         xmlURL=workingDir+"\\templates\\examen_"+newTitulo+"_"+newSubtitulo+".xml";
+         xmlURL=workingDir+"/templates/examen_"+newTitulo+"_"+newSubtitulo+".xml";
          System.out.println(xmlURL);
          try {
              DocumentBuilderFactory documentFactory = DocumentBuilderFactory.newInstance();
@@ -220,10 +220,10 @@ public class Controlador_CrearExamen {
          Date date = new Date(); 
          File xsltFile;
          if(isRespuesta){
-            xsltFile = new File(workingDir+"\\templates\\template_R.xsl");
+            xsltFile = new File(workingDir+"/templates/template_R.xsl");
          }
          else{
-            xsltFile = new File(workingDir+"\\templates\\template_E.xsl");
+            xsltFile = new File(workingDir+"/templates/template_E.xsl");
          }
         // the XML file which provides the input
         StreamSource xmlSource = new StreamSource(new File(xmlURL));
@@ -234,10 +234,10 @@ public class Controlador_CrearExamen {
         // Setup output
         OutputStream out;
        if(isRespuesta){
-            out = new java.io.FileOutputStream(workingDir+"\\Examenes\\Respuestas_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
+            out = new java.io.FileOutputStream(workingDir+"/Examenes/Respuestas_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
        }
        else{
-           out = new java.io.FileOutputStream(workingDir+"\\Examenes\\Examenes_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
+           out = new java.io.FileOutputStream(workingDir+"/Examenes/Examenes_"+newTitulo+"_"+newSubtitulo+"_"+formatter.format(date)+".pdf");
        }
     
         try {

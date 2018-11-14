@@ -85,9 +85,9 @@ public class AgregarVariable {
         
         
         hboxButton.setAlignment(Pos.BOTTOM_RIGHT);
-        hboxVariable.setStyle("-fx-background-color: #73A86F");
-        hboxRangos.setStyle("-fx-background-color: #73A86F");
-        hboxButton.setStyle("-fx-background-color: #73A86F");
+        hboxVariable.setStyle("--fx-background-color: #FBF7E9");
+        hboxRangos.setStyle("-fx-background-color: #FBF7E9");
+        hboxButton.setStyle("-fx-background-color: #FBF7E9");
         hboxVariable.getChildren().addAll(labelVariable,lableVar);
         hboxRangos.getChildren().addAll(labelRangoMin,areaRangoMin,labelRangoMax,areaRangoMax);
         
@@ -98,7 +98,7 @@ public class AgregarVariable {
         
        
         vboxPantalla.getChildren().addAll(r,hboxVariable,hboxRangos,hboxButton);
-        vboxPantalla.setStyle("-fx-background-color: #73A86F");
+        vboxPantalla.setStyle("-fx-background-color: #FBF7E9");
         
         btnAceptar.setOnAction(e->Controlador_AgregarVariable.btnAgrVariable_AV(nomVar));//cambiar cuando se implemente la base de datos
         

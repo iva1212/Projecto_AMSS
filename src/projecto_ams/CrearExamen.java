@@ -94,10 +94,11 @@ public class CrearExamen {
         areaSubtitulo.setPrefSize(200, 20);
         areaNumeroExamenes.setPrefSize(50,20);
         areaInstruciones.setPrefSize(450, 80);
+        btnCrear.setPrefSize(200, 50);
         
-        btnCrear.setStyle(Style.Rich_Blue);
-        btnCrear.setOnMouseEntered(e->btnCrear.setStyle(Style.Rich_Blue_Default));
-        btnCrear.setOnMouseExited(e->btnCrear.setStyle(Style.Rich_Blue));
+        btnCrear.setStyle(Style.Lion+"-fx-font-size:20");
+        btnCrear.setOnMouseEntered(e->btnCrear.setStyle(Style.Lion_default+"-fx-font-size:20"));
+        btnCrear.setOnMouseExited(e->btnCrear.setStyle(Style.Lion+"-fx-font-size:20"));
         
         vboxMatTemas=new VBox(10);
         hboxMateria=new HBox(10);
@@ -134,7 +135,7 @@ public class CrearExamen {
         
         borderPane.setTop(vboxMatTemas);
         borderPane.setBottom(hboxBtnCrear);
-        borderPane.setStyle("-fx-background-color: #73A86F");
+        borderPane.setStyle("-fx-background-color: #FBF7E9");
         
         
         

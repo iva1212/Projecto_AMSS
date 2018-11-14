@@ -70,9 +70,9 @@ public class AgregarTema {
         
         
         bottom.setAlignment(Pos.BOTTOM_RIGHT);
-        hbox.setStyle("-fx-background-color: #73A86F");
-        middle.setStyle("-fx-background-color: #73A86F");
-        bottom.setStyle("-fx-background-color: #73A86F");
+        hbox.setStyle("-fx-background-color: #FBF7E9");
+        middle.setStyle("-fx-background-color: #FBF7E9");
+        bottom.setStyle("-fx-background-color: #FBF7E9");
         hbox.getChildren().addAll(labelMateria,combo);
         middle.getChildren().addAll(labelTema,areaTema);
         bottom.getChildren().add(btnAceptar);
@@ -82,7 +82,7 @@ public class AgregarTema {
         
             
         vboxPantalla.getChildren().addAll(r,hbox,middle,bottom);
-        vboxPantalla.setStyle("-fx-background-color: #73A86F");
+        vboxPantalla.setStyle("-fx-background-color: #FBF7E9");
         
         btnAceptar.setOnAction(e-> Controlador_AgregarTema.btnAgrTema_AT(combo));//cambiar cuando se implemente la base de datos
         Scene scene=new Scene(vboxPantalla);

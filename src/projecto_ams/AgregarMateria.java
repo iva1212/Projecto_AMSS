@@ -60,8 +60,8 @@ public class AgregarMateria {
         
         
         bottom.setAlignment(Pos.BOTTOM_RIGHT);
-        middle.setStyle("-fx-background-color: #73A86F");
-        bottom.setStyle("-fx-background-color: #73A86F");
+        middle.setStyle("-fx-background-color: #FBF7E9");
+        bottom.setStyle("-fx-background-color: #FBF7E9");
         middle.getChildren().addAll(text,area);
         bottom.getChildren().add(btnAceptar);
         
@@ -69,7 +69,7 @@ public class AgregarMateria {
         VBox.setVgrow(r, Priority.ALWAYS);
         
         vbox.getChildren().addAll(r,middle,bottom);
-        vbox.setStyle("-fx-background-color: #73A86F");
+        vbox.setStyle("-fx-background-color: #FBF7E9");
         
         btnAceptar.setOnAction(e-> {
             Controlador_AgregarMateria.btnAgrMateria_AM(area);

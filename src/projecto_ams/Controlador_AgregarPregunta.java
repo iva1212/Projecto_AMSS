@@ -65,7 +65,7 @@ public class Controlador_AgregarPregunta {
     }
     public static void btnMas_AP(Pregunta pregunta){
         VBox middle=AgregarPregunta.getMiddle();
-        HBox secPregunta=AgregarPregunta.getSecPregunta();
+        VBox secPregunta=AgregarPregunta.getSecPregunta();
         HBox masMenos=AgregarPregunta.getMasMenos();
          for(int i=0;i<pregunta.getI().size();i++){
                  pregunta.getI().get(i).save();
@@ -84,7 +84,7 @@ public class Controlador_AgregarPregunta {
      }
      public static void btnMenos_AP(Pregunta pregunta){
         VBox middle=AgregarPregunta.getMiddle();
-        HBox secPregunta=AgregarPregunta.getSecPregunta();
+        VBox secPregunta=AgregarPregunta.getSecPregunta();
         HBox masMenos=AgregarPregunta.getMasMenos();
          for(int i=0;i<pregunta.getI().size();i++){
                  pregunta.getI().get(i).save();
@@ -102,7 +102,7 @@ public class Controlador_AgregarPregunta {
      public static void comboTipo_AP(Pregunta pregunta){
         ComboBox combo3=AgregarPregunta.getCombo3();
         VBox middle=AgregarPregunta.getMiddle();
-        HBox secPregunta=AgregarPregunta.getSecPregunta();
+        VBox secPregunta=AgregarPregunta.getSecPregunta();
         HBox masMenos=AgregarPregunta.getMasMenos();
         Inciso abierta=AgregarPregunta.getAbierta();
         Inciso verdad=AgregarPregunta.getVerdad();

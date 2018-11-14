@@ -44,13 +44,13 @@ public class ConfirmBox {
         
         
         yesButton.setStyle(Style.Lion);
-        noButton.setStyle(Style.Lion_Red);
+        noButton.setStyle(Style.Lion);
         
         yesButton.setOnMouseEntered(e->yesButton.setStyle(Style.Lion_default));
         yesButton.setOnMouseExited(e->yesButton.setStyle(Style.Lion));
         
-        noButton.setOnMouseEntered(e->noButton.setStyle(Style.Lion_default_Red));
-        noButton.setOnMouseExited(e->noButton.setStyle(Style.Lion_Red));
+        noButton.setOnMouseEntered(e->noButton.setStyle(Style.Lion_default));
+        noButton.setOnMouseExited(e->noButton.setStyle(Style.Lion));
         
         yesButton.setOnAction(e ->{
             answer=true;
@@ -64,7 +64,7 @@ public class ConfirmBox {
         
         layout.getChildren().addAll(label,yesButton,noButton);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #73A86F");
+        layout.setStyle("-fx-background-color: #FBF7E9");
         
         
         Scene scene=new Scene(layout);

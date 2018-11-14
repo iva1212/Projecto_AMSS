@@ -63,9 +63,9 @@ public class BorrarTema {
         
        
         hboxButton.setAlignment(Pos.BOTTOM_RIGHT);
-        hboxMateria.setStyle("-fx-background-color: #73A86F");
-        hboxTema.setStyle("-fx-background-color: #73A86F");
-        hboxButton.setStyle("-fx-background-color: #73A86F");
+        hboxMateria.setStyle("-fx-background-color: #FBF7E9");
+        hboxTema.setStyle("-fx-background-color: #FBF7E9");
+        hboxButton.setStyle("-fx-background-color: #FBF7E9");
         hboxMateria.getChildren().addAll(labelMateria,combo);
         hboxTema.getChildren().addAll(labelTema,combo2);
         hboxButton.getChildren().add(btnAceptar);
@@ -74,7 +74,7 @@ public class BorrarTema {
         VBox.setVgrow(r, Priority.ALWAYS);
         
         vbox.getChildren().addAll(r,hboxMateria,hboxTema,hboxButton);
-        vbox.setStyle("-fx-background-color: #73A86F");
+        vbox.setStyle("-fx-background-color: #FBF7E9");
         btnAceptar.setOnAction(e->Controlador_BorrarTema.btnDeletTema_BT(combo, combo2));//cambiar cuando se implemente la base de datos
         Scene scene=new Scene(vbox);
         window.setResizable(false);

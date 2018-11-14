@@ -39,13 +39,15 @@ public class AgregarPregunta {
     private static Label labelTema;
     private static Label labelTipo;
     private static Label labelPregunta;
+    private static Label blank;
     private static Button btnAgregar;
     private static Button btnMas;
     private static Button btnMenos;
     private static HBox top;
     private static HBox bottom;
+    private static HBox hboxAreapreg;
     private static VBox middle;
-    private static HBox secPregunta;
+    private static VBox secPregunta;
     private static HBox masMenos;
     private static BorderPane borderPane;
     private static Inciso abierta;
@@ -68,8 +70,8 @@ public class AgregarPregunta {
         lableMateria=new Label("Materia:");
         labelTema=new Label("Tema:");
         labelTipo=new Label("Tipo:");
-        labelPregunta=new Label("Pregunta:");
-        
+        labelPregunta=new Label("      Pregunta:");
+        blank=new Label("       ");
         btnAgregar=new Button("Agregar");
         btnMas=new Button("+");
         btnMenos=new Button("-");
@@ -77,10 +79,10 @@ public class AgregarPregunta {
         top=new HBox(10);
         bottom=new HBox(10);
         middle=new VBox(10);
-        secPregunta=new HBox(10);
+        secPregunta=new VBox(10);
         masMenos=new HBox(10);
         borderPane=new BorderPane();
-        
+        hboxAreapreg=new HBox(10);
         
         if(pregunta.getMateria()!=""){
             comboBox.setValue(pregunta.getMateria());
@@ -95,7 +97,7 @@ public class AgregarPregunta {
         window.initModality(Modality.APPLICATION_MODAL);
         window.setTitle("Agregar Pregunta");
         window.setMinWidth(550);
-        window.setMinHeight(450);
+        window.setMinHeight(500);
         
      
         if(pregunta.getTipo()!=""){
@@ -139,9 +141,9 @@ public class AgregarPregunta {
         
         
         
-        
-        secPregunta.getChildren().addAll(labelPregunta,preg);
-        top.setStyle("-fx-background-color: #73A86F");
+        hboxAreapreg.getChildren().addAll(blank,preg);
+        secPregunta.getChildren().addAll(labelPregunta,hboxAreapreg);
+        top.setStyle("-fx-background-color: #FBF7E9");
         top.getChildren().addAll(lableMateria,comboBox,labelTema,comboBox2,labelTipo,combo3);
         top.setAlignment(Pos.TOP_LEFT);
         top.setPrefSize(800, 100);
@@ -165,7 +167,7 @@ public class AgregarPregunta {
         btnMenos.setOnAction(e ->Controlador_AgregarPregunta.btnMenos_AP(pregunta));
         
         
-        borderPane.setStyle("-fx-background-color: #73A86F");
+        borderPane.setStyle("-fx-background-color: #FBF7E9");
         borderPane.setTop(top);
         borderPane.setBottom(bottom);
         borderPane.setLeft(middle);
@@ -227,7 +229,7 @@ public class AgregarPregunta {
         return middle;
     }
 
-    public static HBox getSecPregunta() {
+    public static VBox getSecPregunta() {
         return secPregunta;
     }
 

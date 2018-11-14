@@ -14,11 +14,24 @@ import javafx.stage.Stage;
  */
 public class Controlador_AgregarVariable {
     public static void btnAgrVariable_AV(String nomVar){
-         Stage window=AgregarVariable.getWindow();
-         TextArea areaRangoMin=AgregarVariable.getAreaRangoMin();
-         TextArea areaRangoMax=AgregarVariable.getAreaRangoMax();
-          Variable v=new Variable(nomVar,Integer.parseInt(areaRangoMin.getText()),Integer.parseInt(areaRangoMax.getText()));
-          ControladorBD_Variable.agrVariable(v);
-          window.close();
+        try{
+            Stage window=AgregarVariable.getWindow();
+            TextArea areaRangoMin=AgregarVariable.getAreaRangoMin();
+            TextArea areaRangoMax=AgregarVariable.getAreaRangoMax();
+            if(Integer.parseInt(areaRangoMin.getText())<Integer.parseInt(areaRangoMax.getText())){
+                Variable v=new Variable(nomVar,Integer.parseInt(areaRangoMin.getText()),Integer.parseInt(areaRangoMax.getText()));
+                ControladorBD_Variable.agrVariable(v);
+                window.close();
+            }
+            else{
+                AlertBox.display("Error","El minimo no puede ser mayor que el maximo");
+            }
+        }
+        catch (IndexOutOfBoundsException error){
+                    AlertBox.display("Error","Se produjo un error,intente denuevo");
+                }
+                catch(NumberFormatException error){
+                    AlertBox.display("Error","Se produjo un error,intente denuevo");
+                }
      }
 }

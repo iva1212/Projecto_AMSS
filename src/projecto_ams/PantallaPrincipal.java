@@ -109,9 +109,8 @@ public class PantallaPrincipal extends Application {
         addPregunta.setStyle(Style.Lion);
         deletMateria.setStyle(Style.Lion);
         deletTema.setStyle(Style.Lion);
-        crearExamen.setStyle(Style.Rich_Blue);
-        
-       
+        crearExamen.setStyle(Style.Lion+"-fx-font-size:20");
+        crearExamen.setPrefSize(200, 50);
         
         addMateria.setOnMouseEntered(e->addMateria.setStyle(Style.Lion_default));
         addMateria.setOnMouseExited(e->addMateria.setStyle(Style.Lion));
@@ -127,8 +126,8 @@ public class PantallaPrincipal extends Application {
         deletTema.setOnMouseEntered(e->deletTema.setStyle(Style.Lion_default));
         deletTema.setOnMouseExited(e->deletTema.setStyle(Style.Lion));
         
-        crearExamen.setOnMouseEntered(e->crearExamen.setStyle(Style.Rich_Blue_Default));
-        crearExamen.setOnMouseExited(e->crearExamen.setStyle(Style.Rich_Blue));
+        crearExamen.setOnMouseEntered(e->crearExamen.setStyle(Style.Lion_default+"-fx-font-size:20"));
+        crearExamen.setOnMouseExited(e->crearExamen.setStyle(Style.Lion+"-fx-font-size:20"));
         //Styling the main title
         Font.loadFont(PantallaPrincipal.class.getResource("Montserrat-Light.ttf").toExternalForm(), 20);
         labelMateria.setTextFill(Color.web("#000000"));
@@ -172,8 +171,8 @@ public class PantallaPrincipal extends Application {
         bottom.setSpacing(90);
         bottom.setAlignment(Pos.TOP_RIGHT);
         bottom.setPrefSize(1150,200);
-        root.setStyle("-fx-background-color: #73A86F");
-        bottom.setStyle("-fx-background-color: #73A86F");
+        root.setStyle("-fx-background-color: #FBF7E9");
+        bottom.setStyle("-fx-background-color: #FBF7E9");
         Region r = new Region();
         VBox.setVgrow(r, Priority.ALWAYS);
         tabla.getChildren().add(tablaPreguntas);
@@ -184,7 +183,7 @@ public class PantallaPrincipal extends Application {
         //borderPane.setLeft(tabla);
         borderPane.setCenter(tabla);
         borderPane.setBottom(bottom);
-        borderPane.setStyle("-fx-background-color: #73A86F");
+        borderPane.setStyle("-fx-background-color: #FBF7E9");
         //Adding the Title and the buttons to the layout
         root.getChildren().addAll(labelMateria,comboMateria,labelTema,comboTema,addMateria,addTema,deletMateria,deletTema);
         bottom.getChildren().addAll(addPregunta,crearExamen);
@@ -236,7 +235,7 @@ public class PantallaPrincipal extends Application {
         });
         
         //Adding the layout to the scene
-        Scene scene = new Scene(borderPane,1150,614);
+        Scene scene = new Scene(borderPane,1150,620);
         //Displaying the window
         primaryStage.setTitle("Exam Generator");
         primaryStage.setScene(scene);
