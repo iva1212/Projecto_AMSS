@@ -95,6 +95,7 @@ public class Controlador_PantallaPrincipal {
             for(int i=0;i<pregu.size();i++){
             tablaPreguntas.getItems().add(pregu.get(i));
             }
+            PantallaPrincipal.getComboTema().getItems().clear();
             PantallaPrincipal.refresh();
             PantallaPrincipal.setComboMateria(comboMateria);
             PantallaPrincipal.setComboTema(comboTema);

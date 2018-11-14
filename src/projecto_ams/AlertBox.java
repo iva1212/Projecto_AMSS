@@ -46,7 +46,7 @@ public class AlertBox {
         
         layout.getChildren().addAll(label,closeButton);
         layout.setAlignment(Pos.CENTER);
-        layout.setStyle("-fx-background-color: #73A86F");
+        layout.setStyle("-fx-background-color: #dd6c66");
         
         Scene scene=new Scene(layout);
         window.setScene(scene);
