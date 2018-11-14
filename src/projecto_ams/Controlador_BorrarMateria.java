@@ -16,6 +16,7 @@ public class Controlador_BorrarMateria {
     public static void btnDeletMateria_BM(ComboBox combo){
          Stage window=BorrarMateria.getWindow();
          ControladorBD_Materia.deletMateria((String) combo.getValue());
+         PantallaPrincipal.getComboTema().getItems().clear();
          window.close();
      }
 }

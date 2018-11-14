@@ -96,7 +96,8 @@ public class CrearExamen {
         areaInstruciones.setPrefSize(450, 80);
         
         btnCrear.setStyle(Style.Rich_Blue);
-        
+        btnCrear.setOnMouseEntered(e->btnCrear.setStyle(Style.Rich_Blue_Default));
+        btnCrear.setOnMouseExited(e->btnCrear.setStyle(Style.Rich_Blue));
         
         vboxMatTemas=new VBox(10);
         hboxMateria=new HBox(10);
@@ -150,7 +151,7 @@ public class CrearExamen {
                     hboxTemas.clear();
                     resetTemas();
                     vboxMatTemas.getChildren().clear();
-                    vboxMatTemas.getChildren().addAll(hboxTituloSub,hboxMateria,labelTemas);
+                    vboxMatTemas.getChildren().addAll(hboxTituloSub,hboxMateria,hboxInstruciones,labelTemas);
                     for(int i=0;i<hboxTemas.size();i++){
                         vboxMatTemas.getChildren().add(hboxTemas.get(i));
                     }
@@ -160,6 +161,7 @@ public class CrearExamen {
         btnCrear.setOnAction(new EventHandler<ActionEvent>() {
             @Override
             public void handle(ActionEvent e) {
+                try{
                 Controlador_CrearExamen crear=new Controlador_CrearExamen();
                 int numeroExamenes=Integer.parseInt(areaNumeroExamenes.getText());
                 numTemas.clear();
@@ -169,8 +171,17 @@ public class CrearExamen {
                     numTemas.add(Integer.parseInt(num.getText().toString()));
                 }
                 crear.CrearExamen(areaTitulo.getText().toString(),areaSubtitulo.getText().toString(),areaInstruciones.getText().toString(),comboMateria.getValue().toString(),temas,numTemas,numeroExamenes);
-                AlertBox.display("Crear Examen", "Exmen Creado!");
+                AlertBox.display("Crear Examen", "Examen Creado!");
                 window.close();
+                }
+                catch (IndexOutOfBoundsException error){
+                    AlertBox.display("Error","Se produjo un error,intente denuevo");
+                    e.consume();
+                }
+                catch(NumberFormatException error){
+                    AlertBox.display("Error","Se produjo un error,intente denuevo");
+                    e.consume();
+                }
             }
         });
         

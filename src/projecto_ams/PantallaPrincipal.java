@@ -21,6 +21,7 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.Priority;
@@ -62,7 +63,6 @@ public class PantallaPrincipal extends Application {
     
     @Override
     public void start(Stage primaryStage){
-        
         ControladorBD.crearBase(); //cambiar para cambiar
         //Inicializacionde variables
         materias =new ArrayList<>();
@@ -127,6 +127,8 @@ public class PantallaPrincipal extends Application {
         deletTema.setOnMouseEntered(e->deletTema.setStyle(Style.Lion_default));
         deletTema.setOnMouseExited(e->deletTema.setStyle(Style.Lion));
         
+        crearExamen.setOnMouseEntered(e->crearExamen.setStyle(Style.Rich_Blue_Default));
+        crearExamen.setOnMouseExited(e->crearExamen.setStyle(Style.Rich_Blue));
         //Styling the main title
         Font.loadFont(PantallaPrincipal.class.getResource("Montserrat-Light.ttf").toExternalForm(), 20);
         labelMateria.setTextFill(Color.web("#000000"));

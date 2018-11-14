@@ -109,7 +109,18 @@ public class Style {
 "    -fx-text-fill: white;\n" +
 "    -fx-font-size: 12px;\n"+
              "-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);\n"+"-fx-font-size: 20;";
-     public static String Rich_Blue_Text="-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);";
+     public static String Rich_Blue_Default="-fx-background-color: \n" +
+"        #000000,\n" +
+"        linear-gradient(#7ebcea, #2f4b8f),\n" +
+"        linear-gradient(#426ab7, #263e75),\n" +
+"        linear-gradient(#395cab, #223768);\n" +
+"        -fx-background-color: linear-gradient(#2A5058, #61a2b1);"+
+"    -fx-background-insets: 0,1,2,3;\n" +
+"    -fx-background-radius: 3,2,2,2;\n" +
+"    -fx-padding: 12 30 12 30;\n" +
+"    -fx-text-fill: white;\n" +
+"    -fx-font-size: 12px;\n"+
+             "-fx-effect: dropshadow( one-pass-box , rgba(0,0,0,0.8) , 0, 0.0 , 0 , 1);\n"+"-fx-font-size: 20;";
      
      public static String Skip="-fx-background-color: #8c9cbf;\n" +
 "  -fx-background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0%, #8c9cbf), color-stop(50%, #546a9e), color-stop(50%, #36518f), color-stop(100%, #3d5691));\n" +
